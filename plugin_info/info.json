@@ -1,7 +1,7 @@
 {
 	"id" : "hydrao",
 	"name" : "hydrao",
-	"description" : "Plugin permettant d'intégré tous les appareils de la gamme hydrao@Home. Il est possible d'accéder aux données des appareils, de les monitorer et d'effectuer certaine actions (en fonction de l'appareil)",
+	"description" : "Plugin permettant d'intégrer les pommeaux de douches Hydrao.",
 	"licence" : "AGPL",
 	"author" : "Mips",
 	"require" : "3.3.24",
