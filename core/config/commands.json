@@ -1,0 +1,27 @@
+{
+    "common": [
+        {
+            "logicalId": "refresh",
+            "name": "Rafraichir",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1
+        },
+        {
+            "logicalId": "status",
+            "name": "Etat",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 1,
+            "isHistorized": 0
+        },
+        {
+            "logicalId": "rawStatus",
+            "name": "Statut",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+	"id" : "hydrao",
+	"name" : "hydrao",
+	"description" : "Plugin permettant d'intégré tous les appareils de la gamme hydrao@Home. Il est possible d'accéder aux données des appareils, de les monitorer et d'effectuer certaine actions (en fonction de l'appareil)",
+	"licence" : "AGPL",
+	"author" : "Mips",
+	"require" : "3.3.24",
+	"category" : "devicecommunication",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/changelog",
+	"documentation" : "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/",
+	"link" : {
+		"forum":"https://community.jeedom.com/tags/plugin-hydrao",
+		"video" : ""
+	},
+	"language" : ["fr_FR", "en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","v4"]
+}
