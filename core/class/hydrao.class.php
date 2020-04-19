@@ -63,7 +63,7 @@ class hydrao extends eqLogic {
 				$eqLogic->setName($showerHead->getLabel());
 				$eqLogic->save(true);
 
-				$eqLogic->createCommands();
+				$eqLogic->createCommandsFromConfigFile(__DIR__ . '/../config/commands.json', 'common');
 				$eqLogic->checkAndUpdateCmd('advice', $advice);
 				$eqLogic->checkAndUpdateCmd('lastSyncDate', $showerHead->getLastSyncDate());
 				// $client->ShowerHeads()->showerHead($logicalId)->index()
@@ -72,13 +72,6 @@ class hydrao extends eqLogic {
 			log::add(__CLASS__, 'warning', "getShowerHeads: ({$result->getHttpStatusCode()}){$result->getHttpError()}");
 		}
 
-		return true;
-	}
-
-	public function createCommands() {
-		$commands = self::getCommandsConfig('commands.json');
-
-		$this->createCmdFromDef($commands['common']);
 		return true;
 	}
 

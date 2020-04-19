@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a918e7004901ced67c5063ffa3a9162",
+    "content-hash": "cb83ea42e864b6b7921e1bbb3d56db3d",
     "packages": [
         {
             "name": "mips/httpclient",
@@ -82,16 +82,16 @@
         },
         {
             "name": "mips/jeedom-tools",
-            "version": "v0.1",
+            "version": "v0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mips2648/jeedom-tools.git",
-                "reference": "b34123a2e97c7845e7c48ee9927816de05a439b2"
+                "reference": "d9d5b66fe08d89b979591a152e4e984ffe4f73b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/jeedom-tools/zipball/b34123a2e97c7845e7c48ee9927816de05a439b2",
-                "reference": "b34123a2e97c7845e7c48ee9927816de05a439b2",
+                "url": "https://api.github.com/repos/Mips2648/jeedom-tools/zipball/d9d5b66fe08d89b979591a152e4e984ffe4f73b4",
+                "reference": "d9d5b66fe08d89b979591a152e4e984ffe4f73b4",
                 "shasum": ""
             },
             "type": "library",
@@ -100,6 +100,7 @@
                     "MipsEqLogicTrait": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -109,11 +110,7 @@
                 }
             ],
             "description": "Jeedom tools for plugin dev",
-            "support": {
-                "source": "https://github.com/Mips2648/jeedom-tools/tree/master",
-                "issues": "https://github.com/Mips2648/jeedom-tools/issues"
-            },
-            "time": "2020-04-18T14:37:44+00:00"
+            "time": "2020-04-19T16:56:06+00:00"
         },
         {
             "name": "psr/log",
