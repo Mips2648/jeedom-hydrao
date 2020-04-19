@@ -8,19 +8,19 @@
             "isVisible": 1
         },
         {
-            "logicalId": "status",
-            "name": "Etat",
+            "logicalId": "advice",
+            "name": "Conseil",
             "type": "info",
             "subtype": "string",
             "isVisible": 1,
             "isHistorized": 0
         },
         {
-            "logicalId": "rawStatus",
-            "name": "Statut",
+            "logicalId": "lastSyncDate",
+            "name": "Date synchro",
             "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
+            "subtype": "string",
+            "isVisible": 1,
             "isHistorized": 0
         }
     ]

@@ -1,16 +1,26 @@
 {
-    "name": "jeedom/hydrao",
+    "name": "mips/jeedom-hydrao",
     "description": "hydrao plugin for jeedom",
     "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Mips"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Mips2648/hydrao-api"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Mips2648/jeedom-tools"
+        }
+    ],
     "require": {
-        "psr/log": "~1.0"
-    },
-    "autoload": {
-        "psr-4": { "hydraoapi\\" : "hydraoapi/lib/" }
+        "mips/hydrao-api": "dev-master",
+        "mips/jeedom-tools": "dev-master"
     }
 }

@@ -83,6 +83,7 @@ $('.pluginAction[data-action=openLocation]').on('click',function(){
 });
 
 $('#bt_synchydrao').on('click', function () {
+    $('#div_alert').hide();
     $.ajax({
         type: "POST",
         url: "plugins/hydrao/core/ajax/hydrao.ajax.php",

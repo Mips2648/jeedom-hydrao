@@ -123,32 +123,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">{{Type}}</label>
                                 <div class="col-sm-8">
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="DevicetypeId"></span>
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="DevicetypeDesc"></span>
+                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="type"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Numéro de série}}</label>
+                                <label class="col-sm-4 control-label">{{Adresse MAC}}</label>
                                 <div class="col-sm-8">
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="fabNumber"></span>
+                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="mac_address"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Index de fabrication}}</label>
+                                <label class="col-sm-4 control-label">{{Version hardware}}</label>
                                 <div class="col-sm-8">
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="fabIndex"></span>
+                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="hw_version"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Type technique}}</label>
+                                <label class="col-sm-4 control-label">{{Version firmware}}</label>
                                 <div class="col-sm-8">
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="techType"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Numéro du matériel}}</label>
-                                <div class="col-sm-8">
-                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="matNumber"></span>
+                                    <span class="label label-default eqLogicAttr" style="font-size : 1em;" data-l1key="configuration" data-l2key="fw_version"></span>
                                 </div>
                             </div>
                         </fieldset>
