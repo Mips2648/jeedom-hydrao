@@ -1,8 +1,8 @@
 [
     {
         "name": "mips/httpclient",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Mips2648/httpclient.git",
@@ -19,7 +19,7 @@
         },
         "time": "2020-04-18T14:08:57+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Mips\\Http\\": "src/"
@@ -38,26 +38,26 @@
     },
     {
         "name": "mips/hydrao-api",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v0.2",
+        "version_normalized": "0.2.0.0",
         "source": {
             "type": "git",
             "url": "git@github.com:Mips2648/hydrao-api.git",
-            "reference": "7a37f9d1872391e0b98a6b079cf1a7d27f364996"
+            "reference": "a61498544bdd23be62fc567167978e094b632e68"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/7a37f9d1872391e0b98a6b079cf1a7d27f364996",
-            "reference": "7a37f9d1872391e0b98a6b079cf1a7d27f364996",
+            "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/a61498544bdd23be62fc567167978e094b632e68",
+            "reference": "a61498544bdd23be62fc567167978e094b632e68",
             "shasum": ""
         },
         "require": {
-            "mips/httpclient": "dev-master",
+            "mips/httpclient": "0.1",
             "psr/log": "~1.0"
         },
-        "time": "2020-04-18T15:36:52+00:00",
+        "time": "2020-04-19T11:45:41+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "mips\\hydraoapi\\": "src/"
@@ -79,8 +79,8 @@
     },
     {
         "name": "mips/jeedom-tools",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Mips2648/jeedom-tools.git",
@@ -94,7 +94,7 @@
         },
         "time": "2020-04-18T14:37:44+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "MipsEqLogicTrait": "src/"

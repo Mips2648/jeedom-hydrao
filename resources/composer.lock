@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed941d982282c667902e0a0f70961dcb",
+    "content-hash": "8a918e7004901ced67c5063ffa3a9162",
     "packages": [
         {
             "name": "mips/httpclient",
-            "version": "dev-master",
+            "version": "v0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mips2648/httpclient.git",
@@ -43,20 +43,20 @@
         },
         {
             "name": "mips/hydrao-api",
-            "version": "dev-master",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Mips2648/hydrao-api.git",
-                "reference": "7a37f9d1872391e0b98a6b079cf1a7d27f364996"
+                "reference": "a61498544bdd23be62fc567167978e094b632e68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/7a37f9d1872391e0b98a6b079cf1a7d27f364996",
-                "reference": "7a37f9d1872391e0b98a6b079cf1a7d27f364996",
+                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/a61498544bdd23be62fc567167978e094b632e68",
+                "reference": "a61498544bdd23be62fc567167978e094b632e68",
                 "shasum": ""
             },
             "require": {
-                "mips/httpclient": "dev-master",
+                "mips/httpclient": "0.1",
                 "psr/log": "~1.0"
             },
             "type": "library",
@@ -78,11 +78,11 @@
                 "source": "https://github.com/Mips2648/hydrao-api/tree/master",
                 "issues": "https://github.com/Mips2648/hydrao-api/issues"
             },
-            "time": "2020-04-18T15:36:52+00:00"
+            "time": "2020-04-19T11:45:41+00:00"
         },
         {
             "name": "mips/jeedom-tools",
-            "version": "dev-master",
+            "version": "v0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mips2648/jeedom-tools.git",
@@ -165,12 +165,9 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "mips/hydrao-api": 20,
-        "mips/jeedom-tools": 20
-    },
-    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
