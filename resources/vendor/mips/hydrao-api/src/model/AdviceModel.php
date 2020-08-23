@@ -1,14 +1,8 @@
 <?php
 
-namespace mips\hydraoapi\model;
+namespace Mips\HydraoClient\Model;
 
-class AdviceModel {
-
-    private $jsonData;
-
-    public function __construct($json) {
-        $this->jsonData = $json;
-    }
+class AdviceModel extends BaseModel {
 
     public function getAdviceId() {
         return $this->jsonData->advice_id;

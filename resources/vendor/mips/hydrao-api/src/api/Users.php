@@ -1,14 +1,14 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
-use mips\hydraoapi\model\UserModel;
+use Mips\HydraoClient\Model\UserModel;
 
 class Users extends AbstractApi {
 
     public function me() {
         $this->client->getLogger()->debug('GET users/me');
-        return new UsersMeResult($this->client->executeRequest('GET', 'users/me'));
+        return new UsersMeResult($this->client->doGet('users/me'));
     }
 }
 

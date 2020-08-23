@@ -1,21 +1,21 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
-use mips\hydraoapi\model\ShowerHeadModel;
+use Mips\HydraoClient\Model\ShowerHeadModel;
 
 class ShowerHeads extends AbstractApi {
 
-    public function index() {
+    public function get() {
         $this->client->getLogger()->debug('GET shower-heads');
-        return new ShowerHeadsResult($this->client->executeRequest('GET', 'shower-heads'));
+        return new ShowerHeadsResult($this->client->doGet('shower-heads'));
     }
 
     private $ShowerHead;
 
     public function showerHead($deviceUUID) {
         $this->client->getLogger()->debug("build ShowerHead");
-        return $this->ShowerHead ?: ($this->showerheads = new \hydraoapi\api\ShowerHead($this->client, $deviceUUID));
+        return $this->ShowerHead ?: ($this->showerheads = new ShowerHead($this->client, $deviceUUID));
     }
 }
 

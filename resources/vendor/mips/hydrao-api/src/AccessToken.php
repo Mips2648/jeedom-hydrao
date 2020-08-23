@@ -1,6 +1,6 @@
 <?php
 
-namespace mips\hydraoapi;
+namespace Mips\HydraoClient;
 
 use InvalidArgumentException;
 use RuntimeException;

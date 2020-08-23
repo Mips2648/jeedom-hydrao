@@ -22,6 +22,51 @@
             "subtype": "string",
             "isVisible": 1,
             "isHistorized": 0
+        },
+        {
+            "logicalId": "average_volume",
+            "name": "Consommation moyenne",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "L"
+        },
+        {
+            "logicalId": "average_duration",
+            "name": "Durée moyenne",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "s"
+        },
+        {
+            "logicalId": "total_energy_saved",
+            "name": "Total Energie économisée",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh"
+        },
+        {
+            "logicalId": "total_volume_saved",
+            "name": "Total Consommation économisée",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "s"
+        },
+        {
+            "logicalId": "total_money_saved",
+            "name": "Total argent économisé",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "€"
         }
     ]
 }

@@ -1,26 +1,27 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
-use mips\hydraoapi\Client;
-use mips\hydraoapi\model\ShowerHeadModel;
-use mips\hydraoapi\model\ShowerModel;
+use Mips\Http\HttpClient;
+use Mips\HydraoClient\Model\ShowerHeadModel;
+use Mips\HydraoClient\Model\ShowerHeadShowerModel;
+use Mips\HydraoClient\Model\ShowerHeadStatsModel;
 
 class ShowerHead extends AbstractApi {
 
     private $deviceUUID;
 
-    public function __construct(Client $client, string $deviceUUID) {
+    public function __construct(HttpClient $client, string $deviceUUID) {
         parent::__construct($client);
         $this->deviceUUID = $deviceUUID;
     }
 
-    public function index() {
+    public function get() {
         $this->client->getLogger()->debug("GET shower-heads/{$this->deviceUUID}");
-        return new ShowerHeadResult($this->client->executeRequest('GET', "shower-heads/{$this->deviceUUID}"));
+        return new ShowerHeadResult($this->client->doGet("shower-heads/{$this->deviceUUID}"));
     }
 
-    public function shower($limit = null, $fromid = null) {
+    public function showers($limit = null, $fromid = null) {
         $this->client->getLogger()->debug("GET shower-heads/{$this->deviceUUID}/showers");
 
         $data = array();
@@ -31,7 +32,18 @@ class ShowerHead extends AbstractApi {
             $data['fromid'] = $fromid;
         }
 
-        return new ShowerResult($this->client->executeRequest('GET', "shower-heads/{$this->deviceUUID}/showers"));
+        return new ShowerHeadShowersResult($this->client->doGet("shower-heads/{$this->deviceUUID}/showers", $data));
+    }
+
+    public function stats($nbShowers = null) {
+        $this->client->getLogger()->debug("GET shower-heads/{$this->deviceUUID}/stats");
+
+        $data = array();
+        if (is_numeric($nbShowers)) {
+            $data['nbShowers'] = $nbShowers;
+        }
+
+        return new ShowerHeadStatsResult($this->client->doGet("shower-heads/{$this->deviceUUID}/stats", $data));
     }
 }
 
@@ -47,19 +59,31 @@ class ShowerHeadResult extends AbstractResult {
 
 }
 
-class ShowersResult extends AbstractResult {
+class ShowerHeadShowersResult extends AbstractResult {
 
     protected function loadData($json) {
         $this->data = array();
         foreach ($json as $shower) {
-            $this->data[] = new ShowerModel($shower);
+            $this->data[] = new ShowerHeadShowerModel($shower);
         }
     }
 
     /**
-     * @return ShowerModel[]
+     * @return ShowerHeadShowerModel[]
      */
     public function getData(): array {
+        return $this->data;
+    }
+
+}
+
+class ShowerHeadStatsResult extends AbstractResult {
+
+    protected function loadData($json) {
+        $this->data = new ShowerHeadStatsModel($json);
+    }
+
+    public function getData(): ShowerHeadStatsModel {
         return $this->data;
     }
 

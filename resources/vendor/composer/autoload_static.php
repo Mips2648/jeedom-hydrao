@@ -7,28 +7,25 @@ namespace Composer\Autoload;
 class ComposerStaticInit4c5505aa01f6e6089694deaedacf2f8b
 {
     public static $prefixLengthsPsr4 = array (
-        'm' => 
-        array (
-            'mips\\hydraoapi\\' => 15,
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
         ),
         'M' => 
         array (
+            'Mips\\HydraoClient\\' => 18,
             'Mips\\Http\\' => 10,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'mips\\hydraoapi\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mips/hydrao-api/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Mips\\HydraoClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mips/hydrao-api/src',
         ),
         'Mips\\Http\\' => 
         array (

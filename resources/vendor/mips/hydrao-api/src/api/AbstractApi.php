@@ -1,13 +1,13 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
-use mips\hydraoapi\Client;
+use Mips\Http\HttpClient;
 
 abstract class AbstractApi {
     protected $client;
 
-    public function __construct(Client $client) {
+    public function __construct(HttpClient $client) {
         $this->client = $client;
     }
 }

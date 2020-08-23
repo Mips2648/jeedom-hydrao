@@ -58,7 +58,7 @@ class HttpResponse {
      * @return bool
      */
     public function isSuccess() {
-        return $this->httpStatusCode == 200;
+        return $this->httpStatusCode>=200 && $this->httpStatusCode<300;
     }
 
 }

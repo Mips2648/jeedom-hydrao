@@ -1,11 +1,11 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
 use Mips\Http\HttpResponse;
 
 /**
- * Result request API
+ * Result request Api
  */
 abstract class AbstractResult {
 
@@ -20,9 +20,9 @@ abstract class AbstractResult {
     abstract public function getData();
 
     /**
-     * @param httpResponse $response
+     * @param HttpResponse $response
      */
-    public function __construct(httpresponse $response) {
+    public function __construct(HttpResponse $response) {
         $this->httpResponse = $response;
 
         $body = $this->getResponseBody();

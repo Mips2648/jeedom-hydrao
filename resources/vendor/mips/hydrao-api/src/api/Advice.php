@@ -1,20 +1,19 @@
 <?php
 
-namespace mips\hydraoapi\api;
+namespace Mips\HydraoClient\Api;
 
-use mips\hydraoapi\model\AdviceModel;
+use Mips\HydraoClient\Model\AdviceModel;
 
 class Advice extends AbstractApi {
 
-    public function index($language = '') {
+    public function get(string $language = '') {
         $this->client->getLogger()->debug('GET advice');
-
 
         $data = array();
         if ($language==='en' || $language==='fr') {
             $data['local'] = $language;
         }
-        return new AdviceResult($this->client->executeRequest('GET', 'advice', $data));
+        return new AdviceResult($this->client->doGet('advice', $data));
     }
 }
 

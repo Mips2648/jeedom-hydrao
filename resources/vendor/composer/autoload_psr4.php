@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'mips\\hydraoapi\\' => array($vendorDir . '/mips/hydrao-api/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Mips\\HydraoClient\\' => array($vendorDir . '/mips/hydrao-api/src'),
     'Mips\\Http\\' => array($vendorDir . '/mips/httpclient/src'),
 );

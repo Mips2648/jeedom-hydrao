@@ -1,14 +1,8 @@
 <?php
 
-namespace mips\hydraoapi\model;
+namespace Mips\HydraoClient\Model;
 
-class ShowerHeadModel {
-
-    private $jsonData;
-
-    public function __construct($json) {
-        $this->jsonData = $json;
-    }
+class ShowerHeadModel extends BaseModel {
 
     public function getDeviceUUID() {
         return $this->jsonData->device_uuid;

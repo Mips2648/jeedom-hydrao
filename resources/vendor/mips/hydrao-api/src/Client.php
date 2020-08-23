@@ -1,21 +1,36 @@
 <?php
 
-namespace mips\hydraoapi;
+namespace Mips\HydraoClient;
 
 use Mips\Http\HttpClient;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RuntimeException;
 
 /**
  * Hydrao Client
  * @author Mips
  */
-class Client extends HttpClient {
+class Client {
+    /**
+     * @var AccessToken
+     */
     private $accesstoken;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var HttpClient
+     */
+    private $httpClient;
+
     public function __construct(string $apiKey, LoggerInterface $logger = null) {
-        parent::__construct('https://api.hydrao.com', $logger);
-        $this->headers[] = 'x-api-key: '.$apiKey;
+        $this->logger = $logger ?: new NullLogger();
+        $this->httpClient = new HttpClient('https://api.hydrao.com', $this->logger);
+        $this->httpClient->getHttpHeaders()->setHeader('x-api-key', $apiKey);
     }
 
     /**
@@ -30,96 +45,41 @@ class Client extends HttpClient {
             'password' => $pass,
         ];
 
-        $result = $this->executeRequest('POST', 'sessions', $data);
+        $result = $this->httpClient->doPost('sessions', $data);
         if ($result->isSuccess()) {
             $this->accesstoken = new AccessToken(json_decode($result->getBody(), true));
-            $this->headers[] = 'Authorization: Bearer ' . $this->accesstoken->getToken();
-            $this->getLogger()->debug("access token saved");
+            $this->httpClient->getHttpHeaders()->setHeader('Authorization', 'Bearer ' . $this->accesstoken->getToken());
+            $this->logger->debug("access token header set");
             return true;
         }
         throw new RuntimeException("Login failed: ({$result->getHttpStatusCode()}){$result->getError()} - response received: {$result->getBody()}");
     }
 
-    public function getToken() {
-        return $this->accesstoken;
-    }
-
     private $users;
 
     public function Users() {
-        $this->getLogger()->debug("users");
-        return $this->users ?: ($this->users = new \hydraoapi\api\Users($this));
+        $this->logger->debug("users");
+        return $this->users ?: ($this->users = new \Mips\HydraoClient\Api\Users($this->httpClient));
     }
 
     private $showerheads;
 
     public function ShowerHeads() {
-        $this->getLogger()->debug("ShowerHeads");
-        return $this->showerheads ?: ($this->showerheads = new \hydraoapi\api\ShowerHeads($this));
-    }
-
-    /**
-     * Hydrao showers info
-     * @return ShowersResult
-     */
-    public function getShowers($deviceUUID, int $limit=null, int $fromId=null): ShowersResult
-    {
-        $data = array();
-        if (!is_null($limit) && $limit>0) {
-            $data['limit'] = $limit;
-        }
-        if (!is_null($fromId) && $fromId>0) {
-            $data['fromid'] = $fromId;
-        }
-
-        $params = Client::buildQueryString($data);
-        $this->logger->debug("params builded for getShowersInfo: {$params}");
-
-        return new ShowersResult($this->executeRequest('GET', "shower-heads/{$deviceUUID}/showers?{$params}"));
+        $this->logger->debug("ShowerHeads");
+        return $this->showerheads ?: ($this->showerheads = new \Mips\HydraoClient\Api\ShowerHeads($this->httpClient));
     }
 
     private $advice;
 
     public function Advice() {
-        $this->getLogger()->debug("Advice");
-        return $this->advice ?: ($this->advice = new \hydraoapi\api\Advice($this));
+        $this->logger->debug("Advice");
+        return $this->advice ?: ($this->advice = new \Mips\HydraoClient\Api\Advice($this->httpClient));
     }
 
-    /**
-     * Hydrao user-stats
-     * @return UserStatsResult
-     */
-    public function getUserStats(int $nbShowers=null): UserStatsResult
-    {
-        $data = array();
-        if (!is_null($nbShowers) && $nbShowers>0) {
-            $data['nbShowers'] = $nbShowers;
-        }
-        $params = Client::buildQueryString($data);
-        $this->logger->debug("params builded for getUserStats: {$params}");
+    private $userStats;
 
-        return new UserStatsResult($this->executeRequest('GET', "user-stats?{$params}"));
+    public function UserStats() {
+        $this->logger->debug("UserStats");
+        return $this->userStats ?: ($this->userStats = new \Mips\HydraoClient\Api\UserStats($this->httpClient));
     }
-
-    /**
-     * Hydrao shower-head stats
-     * @return ShowerHeadStatsResult
-     */
-    public function getShowerHeadStats($deviceUUID, int $nbShowers=null): ShowerHeadStatsResult
-    {
-        $data = array();
-        if (!is_null($nbShowers) && $nbShowers>0) {
-            $data['nbShowers'] = $nbShowers;
-        }
-        $params = Client::buildQueryString($data);
-        $this->logger->debug("params builded for getUserStats: {$params}");
-
-        return new ShowerHeadStatsResult($this->executeRequest('GET', "shower-heads/{$deviceUUID}/stats"));
-    }
-
-    protected static function buildQueryString(array $params)
-    {
-        return http_build_query($params, null, '&', \PHP_QUERY_RFC3986);
-    }
-
 }

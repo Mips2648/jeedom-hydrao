@@ -1,14 +1,8 @@
 <?php
 
-namespace mips\hydraoapi\model;
+namespace Mips\HydraoClient\Model;
 
-class UserModel {
-
-    private $jsonData;
-
-    public function __construct($json) {
-        $this->jsonData = $json;
-    }
+class UserModel extends BaseModel {
 
     public function getId() {
         return $this->jsonData->id;

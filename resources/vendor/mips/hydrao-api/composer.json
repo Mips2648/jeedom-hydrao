@@ -1,6 +1,6 @@
 {
     "name": "mips/hydrao-api",
-    "description": "hydrao api client",
+    "description": "Hydrao Api Client",
     "license": "proprietary",
     "authors": [
         {
@@ -9,9 +9,9 @@
     ],
     "require": {
         "psr/log": "~1.0",
-        "mips/httpclient": "0.1"
+        "mips/httpclient": "~0.7"
     },
     "autoload": {
-        "psr-4": { "mips\\hydraoapi\\" : "src/" }
+        "psr-4": { "Mips\\HydraoClient\\" : "src/" }
     }
 }

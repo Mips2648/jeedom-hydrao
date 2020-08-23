@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "mips/hydrao-api": "~0.2",
+        "mips/hydrao-api": "~0.5",
         "mips/jeedom-tools": "~0.5"
     }
 }
