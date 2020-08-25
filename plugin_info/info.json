@@ -2,6 +2,7 @@
 	"id" : "hydrao",
 	"name" : "hydrao",
 	"description" : "Plugin permettant d'intégrer les pommeaux de douches Hydrao.",
+	"utilization" : "",
 	"licence" : "AGPL",
 	"author" : "Mips",
 	"require" : "3.3.24",
