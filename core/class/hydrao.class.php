@@ -8,6 +8,8 @@ use Mips\HydraoClient\Client;
 class hydrao extends eqLogic {
 	use MipsEqLogicTrait;
 
+	public static $_encryptConfigKey = array('username', 'password', 'apikey');
+
 	public static function cronHourly() {
 		try {
 			hydrao::syncDevices();
