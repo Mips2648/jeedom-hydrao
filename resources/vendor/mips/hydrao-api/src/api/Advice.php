@@ -10,7 +10,7 @@ class Advice extends AbstractApi {
         $this->client->getLogger()->debug('GET advice');
 
         $data = array();
-        if ($language==='en' || $language==='fr') {
+        if ($language === 'en' || $language === 'fr') {
             $data['local'] = $language;
         }
         return new AdviceResult($this->client->doGet('advice', $data));
@@ -26,5 +26,4 @@ class AdviceResult extends AbstractResult {
     public function getData(): AdviceModel {
         return $this->data;
     }
-
 }
