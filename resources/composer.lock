@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "776e152c172372913af4482b1f868e4d",
+    "content-hash": "c5cf2ccee46751c2b1f3e84aab2adeaa",
     "packages": [
         {
             "name": "mips/httpclient",
-            "version": "v0.7",
+            "version": "v0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mips2648/httpclient.git",
-                "reference": "71614fdc8f6859f4722ebcf94c0c8798470129c6"
+                "reference": "2259a0e6bf4522f71e57ff5896a1171cce09cff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/httpclient/zipball/71614fdc8f6859f4722ebcf94c0c8798470129c6",
-                "reference": "71614fdc8f6859f4722ebcf94c0c8798470129c6",
+                "url": "https://api.github.com/repos/Mips2648/httpclient/zipball/2259a0e6bf4522f71e57ff5896a1171cce09cff9",
+                "reference": "2259a0e6bf4522f71e57ff5896a1171cce09cff9",
                 "shasum": ""
             },
             "require": {
@@ -39,20 +39,24 @@
                 }
             ],
             "description": "Http Client for json API",
-            "time": "2020-05-03T17:09:26+00:00"
+            "support": {
+                "issues": "https://github.com/Mips2648/httpclient/issues",
+                "source": "https://github.com/Mips2648/httpclient/tree/v0.9"
+            },
+            "time": "2021-07-20T13:46:27+00:00"
         },
         {
             "name": "mips/hydrao-api",
-            "version": "v0.13",
+            "version": "v0.15",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Mips2648/hydrao-api.git",
-                "reference": "8bcf2fdd6c969015ba0304da15a4e06f9bc2c4c3"
+                "reference": "bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/8bcf2fdd6c969015ba0304da15a4e06f9bc2c4c3",
-                "reference": "8bcf2fdd6c969015ba0304da15a4e06f9bc2c4c3",
+                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d",
+                "reference": "bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d",
                 "shasum": ""
             },
             "require": {
@@ -75,10 +79,10 @@
             ],
             "description": "Hydrao Api Client",
             "support": {
-                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.13",
+                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.15",
                 "issues": "https://github.com/Mips2648/hydrao-api/issues"
             },
-            "time": "2020-05-03T17:32:58+00:00"
+            "time": "2021-11-25T16:14:19+00:00"
         },
         {
             "name": "mips/jeedom-tools",
@@ -110,20 +114,24 @@
                 }
             ],
             "description": "Jeedom tools for plugin dev",
+            "support": {
+                "issues": "https://github.com/Mips2648/jeedom-tools/issues",
+                "source": "https://github.com/Mips2648/jeedom-tools/tree/v0.6"
+            },
             "time": "2020-04-19T17:09:52+00:00"
         },
         {
             "name": "psr/log",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +155,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for logging libraries",
@@ -157,7 +165,10 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2020-03-23T09:12:05+00:00"
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
+            },
+            "time": "2021-05-03T11:20:27+00:00"
         }
     ],
     "packages-dev": [],
@@ -168,5 +179,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

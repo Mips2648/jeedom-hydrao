@@ -28,20 +28,27 @@ if (!isConnect()) {
         <div class="form-group">
             <label class="col-sm-4 control-label">{{Nom d'utilisateur}}</label>
             <div class="col-sm-4">
-                <input type="text" class="configKey form-control" data-l1key="username" placeholder="{{Saisir le nom d'utilisateur}}"/>
+                <input type="text" class="configKey form-control" data-l1key="username" placeholder="{{Saisir le nom d'utilisateur}}" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label">{{Mot de passe}}</label>
             <div class="col-sm-4">
-                <input type="password" class="configKey form-control" data-l1key="password" placeholder="{{Saisir le mot de passe}}"/>
+                <input type="password" class="configKey form-control" data-l1key="password" placeholder="{{Saisir le mot de passe}}" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label">{{Clé API}}</label>
             <div class="col-sm-4">
-                <input type="password"  class="configKey form-control" data-l1key="apikey" placeholder="{{Saisir la clé API}}"/>
+                <input type="password" class="configKey form-control" data-l1key="apikey" placeholder="{{Saisir la clé API}}" />
             </div>
         </div>
-  </fieldset>
+        <legend><i class="fas fa-sync"></i> {{synchronisation}}</legend>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">{{Nombre de douche à synchroniser}}</label>
+            <div class="col-sm-2">
+                <input type="text" class="configKey form-control" data-l1key="syncLimit" placeholder="500" />
+            </div>
+        </div>
+    </fieldset>
 </form>

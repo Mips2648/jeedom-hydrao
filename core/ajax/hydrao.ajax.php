@@ -26,12 +26,35 @@ try {
 
 	ajax::init();
 
-    if (init('action') == 'syncDevices') {
-        if (hydrao::syncDevices()) {
-            ajax::success();
-        } else {
-            ajax::error(__('Erreur lors de la synchronisation, vérifiez le log', __FILE__), 1);
-        }
+	if (init('action') == 'syncDevices') {
+		if (hydrao::syncDevices()) {
+			ajax::success();
+		} else {
+			ajax::error(__('Erreur lors de la synchronisation, vérifiez le log', __FILE__), 1);
+		}
+	} elseif (init('action') == 'createCommands') {
+		/**
+		 * @var hydrao
+		 */
+		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('eqLogic non trouvé : ', __FILE__) . init('id'));
+		}
+
+		if ($eqLogic->createCommands(true)) {
+			ajax::success();
+		} else {
+			ajax::error(__('Erreur lors de la création des commandes', __FILE__), 1);
+		}
+	} elseif (init('action') == 'getImage') {
+		/**
+		 * @var hydrao
+		 */
+		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('eqLogic non trouvé : ', __FILE__) . init('id'));
+		}
+		ajax::success($eqLogic->getImage());
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

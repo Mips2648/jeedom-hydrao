@@ -24,14 +24,14 @@ class HttpResponse {
      * @param string $body
      * @param string  $error
      */
-    public function __construct($httpCode, $body, $error='') {
+    public function __construct($httpCode, $body, $error = '') {
         $this->httpStatusCode = (int)$httpCode;
         $this->body = $body;
         $this->error = $error;
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getBody() {
         return $this->body;
@@ -58,7 +58,6 @@ class HttpResponse {
      * @return bool
      */
     public function isSuccess() {
-        return $this->httpStatusCode>=200 && $this->httpStatusCode<300;
+        return $this->httpStatusCode >= 200 && $this->httpStatusCode < 300;
     }
-
 }

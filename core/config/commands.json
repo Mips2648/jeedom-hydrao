@@ -67,6 +67,59 @@
             "isVisible": 1,
             "isHistorized": 0,
             "unite": "€"
+        },
+        {
+            "logicalId": "volume",
+            "name": "Volume",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "L"
+        },
+        {
+            "logicalId": "temperature",
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C"
+        },
+        {
+            "logicalId": "soapingTime",
+            "name": "Durée de savonnage",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "s"
+        },
+        {
+            "logicalId": "flow",
+            "name": "Débit",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": ""
+        },
+        {
+            "logicalId": "duration",
+            "name": "Durée",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "s"
+        },
+        {
+            "logicalId": "numberOfSoapings",
+            "name": "Nombre de savonnage",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0
         }
     ]
 }

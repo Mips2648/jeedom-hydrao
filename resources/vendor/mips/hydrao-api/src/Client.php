@@ -3,6 +3,10 @@
 namespace Mips\HydraoClient;
 
 use Mips\Http\HttpClient;
+use Mips\HydraoClient\Api\Advice;
+use Mips\HydraoClient\Api\ShowerHeads;
+use Mips\HydraoClient\Api\Users;
+use Mips\HydraoClient\Api\UserStats;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -59,27 +63,36 @@ class Client {
 
     public function Users() {
         $this->logger->debug("users");
-        return $this->users ?: ($this->users = new \Mips\HydraoClient\Api\Users($this->httpClient));
+        return $this->users ?: ($this->users = new Users($this->httpClient));
     }
 
+    /**
+     * @var ShowerHeads
+    */
     private $showerheads;
 
     public function ShowerHeads() {
         $this->logger->debug("ShowerHeads");
-        return $this->showerheads ?: ($this->showerheads = new \Mips\HydraoClient\Api\ShowerHeads($this->httpClient));
+        return $this->showerheads ?: ($this->showerheads = new ShowerHeads($this->httpClient));
     }
 
+    /**
+     * @var Advice
+    */
     private $advice;
 
     public function Advice() {
         $this->logger->debug("Advice");
-        return $this->advice ?: ($this->advice = new \Mips\HydraoClient\Api\Advice($this->httpClient));
+        return $this->advice ?: ($this->advice = new Advice($this->httpClient));
     }
 
+    /**
+     * @var UserStats
+    */
     private $userStats;
 
     public function UserStats() {
         $this->logger->debug("UserStats");
-        return $this->userStats ?: ($this->userStats = new \Mips\HydraoClient\Api\UserStats($this->httpClient));
+        return $this->userStats ?: ($this->userStats = new UserStats($this->httpClient));
     }
 }

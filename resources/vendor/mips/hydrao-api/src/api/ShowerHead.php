@@ -21,7 +21,7 @@ class ShowerHead extends AbstractApi {
         return new ShowerHeadResult($this->client->doGet("shower-heads/{$this->deviceUUID}"));
     }
 
-    public function showers($limit = null, $fromid = null) {
+    public function showers(?int $limit = null, ?int $fromid = null) {
         $this->client->getLogger()->debug("GET shower-heads/{$this->deviceUUID}/showers");
 
         $data = array();
@@ -35,7 +35,7 @@ class ShowerHead extends AbstractApi {
         return new ShowerHeadShowersResult($this->client->doGet("shower-heads/{$this->deviceUUID}/showers", $data));
     }
 
-    public function stats($nbShowers = null) {
+    public function stats(?int $nbShowers = null) {
         $this->client->getLogger()->debug("GET shower-heads/{$this->deviceUUID}/stats");
 
         $data = array();

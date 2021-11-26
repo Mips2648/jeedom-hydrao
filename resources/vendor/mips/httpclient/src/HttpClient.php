@@ -22,6 +22,12 @@ class HttpClient {
      */
     private $host;
 
+
+    /**
+     * @var string
+     */
+    private $userPwd;
+
     /**
      * @var HttpHeader
      */
@@ -40,6 +46,14 @@ class HttpClient {
 
         if ($this->host[strlen($this->host) - 1] === '/') {
             $this->host = substr($this->host, 0, strlen($this->host) - 1);
+        }
+    }
+
+    public function setBasicAuth(string $username, string $password) {
+        if (!empty($username) && !empty($password)) {
+            $this->userPwd = "{$username}:{$password}";
+        } else {
+            $this->userPwd = null;
         }
     }
 
@@ -66,7 +80,7 @@ class HttpClient {
     public function doRequest(string $_method, string $_path, array $_data = [], HttpHeader $_headers = null) {
         $method = strtoupper($_method);
 
-        if (! in_array($method, array('GET', 'POST', 'PUT', 'DELETE'))) throw new InvalidArgumentException("Method not supported:{$method}");
+        if (!in_array($method, array('GET', 'POST', 'PUT', 'DELETE'))) throw new InvalidArgumentException("Method not supported:{$method}");
 
         $_headers ?: $_headers = new HttpHeader();
 
@@ -100,6 +114,9 @@ class HttpClient {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $_headers->getHeadersForHttp());
+        if (!empty($this->userPwd)) {
+            curl_setopt($ch, CURLOPT_USERPWD, $this->userPwd);
+        }
 
         $this->logger->debug("sending request...");
         $curlResponse = curl_exec($ch);
@@ -127,5 +144,4 @@ class HttpClient {
     public function doDelete(string $_path, array $_data = [], HttpHeader $_headers = null) {
         return $this->doRequest('DELETE', $_path, $_data, $_headers);
     }
-
 }

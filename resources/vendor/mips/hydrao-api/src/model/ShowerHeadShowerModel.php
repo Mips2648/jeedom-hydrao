@@ -19,7 +19,7 @@ class ShowerHeadShowerModel extends BaseModel {
     }
 
     public function getTemperature() {
-        return $this->jsonData->temerature;
+        return $this->jsonData->temperature;
     }
 
     /**
