@@ -117,6 +117,10 @@
                 }
             ],
             "description": "Jeedom tools for plugin dev",
+            "support": {
+                "issues": "https://github.com/Mips2648/jeedom-tools/issues",
+                "source": "https://github.com/Mips2648/jeedom-tools/tree/v0.6"
+            },
             "install-path": "../mips/jeedom-tools"
         },
         {

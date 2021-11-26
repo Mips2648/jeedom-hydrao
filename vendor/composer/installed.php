@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd962dc69fe90dcc968d4019195cc20e966984a5f',
+    'reference' => '6a77140dcd0a3e58762e502632c16d5af09273df',
     'name' => 'mips/jeedom-hydrao',
   ),
   'versions' => 
@@ -36,7 +36,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd962dc69fe90dcc968d4019195cc20e966984a5f',
+      'reference' => '6a77140dcd0a3e58762e502632c16d5af09273df',
     ),
     'mips/jeedom-tools' => 
     array (
