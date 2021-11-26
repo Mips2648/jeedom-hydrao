@@ -29,18 +29,36 @@ class hydrao extends eqLogic {
 	}
 
 	public static function syncDevices() {
-		log::add(__CLASS__, 'debug', "syncDevices");
+		log::add(__CLASS__, 'info', 'Start sync');
 		$client = hydrao::getClient();
+		$newEqlogic = false;
 
-		$result = $client->Advice()->get();
+		$result = $client->Users()->me();
 		if ($result->isSuccess()) {
-			$advice = $result->getData()->getDescription();
+			$me = $result->getData();
+			/**
+			 * @var hydrao
+			 */
+			$user = eqLogic::byLogicalId($me->getId(), __CLASS__);
+			if (!is_object($user)) {
+				log::add(__CLASS__, 'info', "Creating new user with logicalId={$me->getId()}");
+				$user = new self();
+				$user->setLogicalId($me->getId());
+				$user->setEqType_name(__CLASS__);
+				$user->setIsEnable(1);
+				$user->setIsVisible(1);
+				$user->setConfiguration('type', 'user');
+				$user->setName($me->getId());
+				$user->save();
+				$newEqlogic = true;
+			}
+			$user->refreshHydraoData($client);
 		}
 
 		$result = $client->ShowerHeads()->get();
 		if ($result->isSuccess()) {
 			foreach ($result->getData() as $showerHead) {
-				log::add(__CLASS__, 'debug', 'showerHead:' . $showerHead);
+				log::add(__CLASS__, 'debug', "showerHead:{$showerHead}");
 				$logicalId = $showerHead->getDeviceUUID();
 				/**
 				 * @var hydrao
@@ -55,31 +73,35 @@ class hydrao extends eqLogic {
 					$eqLogic->setIsVisible(1);
 
 					$eqLogic->setName($showerHead->getLabel());
-					$eqLogic->setConfiguration('type', $showerHead->getType());
 					$eqLogic->setConfiguration('mac_address', $showerHead->getMACAddress());
 					$eqLogic->setConfiguration('hw_version', $showerHead->getHWVersion());
 					$eqLogic->setConfiguration('fw_version', $showerHead->getFWVersion());
+					$eqLogic->setConfiguration('shower_type', $showerHead->getType());
+					$eqLogic->setConfiguration('type', 'showerHead');
 					$eqLogic->save();
-					event::add('hydrao::newDevice');
+					$newEqlogic = true;
 				}
 
 				$dateTime = (new DateTime($showerHead->getLastSyncDate()))->format('Y-m-d H:i:s');
 				$eqLogic->checkAndUpdateCmd('lastSyncDate', $dateTime);
-				$eqLogic->checkAndUpdateCmd('advice', $advice);
+
 
 				$eqLogic->refreshHydraoData($client);
 			}
 		} else {
 			log::add(__CLASS__, 'warning', "getShowerHeads: ({$result->getHttpStatusCode()}){$result->getHttpError()}");
 		}
+		if ($newEqlogic) {
+			event::add('hydrao::newDevice');
+		}
 
 		return true;
 	}
 
 	public function createCommands($syncValues = false) {
-		log::add(__CLASS__, 'debug', "Checking commands of {$this->getName()}");
+		log::add(__CLASS__, 'info', "Creating commands for {$this->getName()}");
 
-		$this->createCommandsFromConfigFile(__DIR__ . '/../config/commands.json', 'common');
+		$this->createCommandsFromConfigFile(__DIR__ . '/../config/commands.json', $this->getConfiguration('type'));
 
 		if ($syncValues) {
 			$this->refreshHydraoData();
@@ -89,9 +111,9 @@ class hydrao extends eqLogic {
 	}
 
 	public function getImage() {
-		$type = $this->getConfiguration('type', 'none');
-		if (file_exists(__DIR__ . "/../config/{$type}.png")) {
-			return "plugins/hydrao/core/config/{$type}.png";
+		$shower_type = $this->getConfiguration('shower_type', 'none');
+		if (file_exists(__DIR__ . "/../config/{$shower_type}.png")) {
+			return "plugins/hydrao/core/config/{$shower_type}.png";
 		}
 
 		return parent::getImage();
@@ -106,15 +128,32 @@ class hydrao extends eqLogic {
 			$result = $client->UserStats()->get();
 			if ($result->isSuccess()) {
 				$userStats = $result->getData();
-				log::add(__CLASS__, 'debug', 'userStats:' . $userStats);
+				log::add(__CLASS__, 'debug', "userStats: {$userStats}");
 				$this->checkAndUpdateCmd('average_volume', $userStats->getAverageVolumeValue());
 				$this->checkAndUpdateCmd('average_duration', $userStats->getAverageDurationValue());
 				$this->checkAndUpdateCmd('total_energy_saved', $userStats->getTotalEnergySavedValue());
 				$this->checkAndUpdateCmd('total_volume_saved', $userStats->getTotalVolumeSavedValue());
 				$this->checkAndUpdateCmd('total_money_saved', $userStats->getTotalMoneySavedValue());
 			}
+			$result = $client->Advice()->get();
+			if ($result->isSuccess()) {
+				$this->checkAndUpdateCmd('advice', $result->getData()->getDescription());
+			}
 		} catch (\Throwable $th) {
 			log::add(__CLASS__, 'error', 'error get UserStats:' . $th->getMessage());
+		}
+	}
+
+	private function refreshShowerStats(client $client) {
+		try {
+			$result = $client->ShowerHeads()->showerHead($this->getLogicalId())->stats(100);
+			if ($result->isSuccess()) {
+				$showerStats = $result->getData();
+				log::add(__CLASS__, 'debug', 'shower:' . $showerStats);
+				$this->checkAndUpdateCmd('volume_average', $showerStats->getVolumeAverage());
+			}
+		} catch (\Throwable $th) {
+			//throw $th;
 		}
 	}
 
@@ -123,10 +162,11 @@ class hydrao extends eqLogic {
 			$lastShowerId = $this->getConfiguration('last_shower_id', 0);
 			$result = $client->ShowerHeads()->showerHead($this->getLogicalId())->showers(config::byKey('syncLimit', __CLASS__, 500), $lastShowerId);
 			if ($result->isSuccess()) {
+				$newShowers = 0;
 				foreach (array_reverse($result->getData()) as $shower) {
 					if ($lastShowerId == $shower->getId()) continue;
 					$lastShowerId = $shower->getId();
-					log::add(__CLASS__, 'debug', 'shower:' . $shower);
+					log::add(__CLASS__, 'debug', "shower: {$shower}");
 					$dateTime = (new DateTime($shower->getDate()))->format('Y-m-d H:i:s');
 					$this->checkAndUpdateCmd('volume', $shower->getVolume(), $dateTime);
 					$this->checkAndUpdateCmd('temperature', $shower->getTemperature(), $dateTime);
@@ -134,8 +174,9 @@ class hydrao extends eqLogic {
 					$this->checkAndUpdateCmd('flow', $shower->getFlow(), $dateTime);
 					$this->checkAndUpdateCmd('duration', $shower->getDuration(), $dateTime);
 					$this->checkAndUpdateCmd('numberOfSoapings', $shower->getNumberOfSoapings(), $dateTime);
+					++$newShowers;
 				}
-				log::add(__CLASS__, 'info', 'All showers synchronized');
+				log::add(__CLASS__, 'info', "All showers synchronized, new:{$newShowers}");
 				$this->setConfiguration('last_shower_id', $lastShowerId);
 				$this->save(true);
 			}
@@ -146,8 +187,21 @@ class hydrao extends eqLogic {
 
 	public function refreshHydraoData(?Client $client = null) {
 		$client ?: ($client = hydrao::getClient());
-		$this->refreshUserStats($client);
-		$this->refreshShowers($client);
+		$type = $this->getConfiguration('type');
+		switch ($type) {
+			case 'showerHead':
+				log::add(__CLASS__, 'info', 'Refresh showerHead');
+				$this->refreshShowers($client);
+				$this->refreshShowerStats($client);
+				break;
+			case 'user':
+				log::add(__CLASS__, 'info', 'Refresh user stats');
+				$this->refreshUserStats($client);
+				break;
+			default:
+				log::add(__CLASS__, 'warning', "Unknown hydrao eqLogic type: ({$type})");
+				break;
+		}
 	}
 }
 

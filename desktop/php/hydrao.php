@@ -129,7 +129,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">{{Type}}</label>
                                     <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="type"></span>
+                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="shower_type"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">

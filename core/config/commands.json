@@ -1,5 +1,112 @@
 {
-    "common": [
+    "showerHead": [
+        {
+            "logicalId": "refresh",
+            "name": "Rafraichir",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1
+        },
+        {
+            "logicalId": "lastSyncDate",
+            "name": "Date synchro",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 1,
+            "isHistorized": 0
+        },
+        {
+            "logicalId": "volume",
+            "name": "Volume",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "L",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "temperature",
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "soapingTime",
+            "name": "Durée de savonnage",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "s",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "flow",
+            "name": "Débit",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "duration",
+            "name": "Durée",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "s",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "numberOfSoapings",
+            "name": "Nombre de savonnage",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        },
+        {
+            "logicalId": "volume_average",
+            "name": "Consommation moyenne",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "L",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
+        }
+    ],
+    "user": [
         {
             "logicalId": "refresh",
             "name": "Rafraichir",
@@ -16,21 +123,17 @@
             "isHistorized": 0
         },
         {
-            "logicalId": "lastSyncDate",
-            "name": "Date synchro",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 1,
-            "isHistorized": 0
-        },
-        {
             "logicalId": "average_volume",
             "name": "Consommation moyenne",
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
-            "unite": "L"
+            "unite": "L",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
         },
         {
             "logicalId": "average_duration",
@@ -39,7 +142,11 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
-            "unite": "s"
+            "unite": "s",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
         },
         {
             "logicalId": "total_energy_saved",
@@ -48,7 +155,11 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
-            "unite": "kWh"
+            "unite": "kWh",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
         },
         {
             "logicalId": "total_volume_saved",
@@ -57,7 +168,11 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
-            "unite": "s"
+            "unite": "s",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
         },
         {
             "logicalId": "total_money_saved",
@@ -66,60 +181,11 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
-            "unite": "€"
-        },
-        {
-            "logicalId": "volume",
-            "name": "Volume",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "L"
-        },
-        {
-            "logicalId": "temperature",
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C"
-        },
-        {
-            "logicalId": "soapingTime",
-            "name": "Durée de savonnage",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "s"
-        },
-        {
-            "logicalId": "flow",
-            "name": "Débit",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": ""
-        },
-        {
-            "logicalId": "duration",
-            "name": "Durée",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "s"
-        },
-        {
-            "logicalId": "numberOfSoapings",
-            "name": "Nombre de savonnage",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0
+            "unite": "€",
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            }
         }
     ]
 }
