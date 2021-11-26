@@ -27,14 +27,14 @@ abstract class AbstractResult {
 
         $body = $this->getResponseBody();
 
-        if ($this->isSuccess() && $body!='') {
+        if ($this->isSuccess() && $body != '') {
             $jsonData = json_decode($body, false);
             $this->loadData($jsonData);
         }
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getResponseBody() {
         return $this->httpResponse->getBody();

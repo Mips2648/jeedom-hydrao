@@ -56,7 +56,6 @@ class ShowerHeadResult extends AbstractResult {
     public function getData(): ShowerHeadModel {
         return $this->data;
     }
-
 }
 
 class ShowerHeadShowersResult extends AbstractResult {
@@ -74,7 +73,6 @@ class ShowerHeadShowersResult extends AbstractResult {
     public function getData(): array {
         return $this->data;
     }
-
 }
 
 class ShowerHeadStatsResult extends AbstractResult {
@@ -86,5 +84,4 @@ class ShowerHeadStatsResult extends AbstractResult {
     public function getData(): ShowerHeadStatsModel {
         return $this->data;
     }
-
 }

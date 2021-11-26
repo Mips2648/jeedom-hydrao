@@ -10,8 +10,7 @@ class BaseModel {
         $this->jsonData = $json;
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return json_encode($this->jsonData);
     }
 }

@@ -44,24 +44,24 @@
         },
         {
             "name": "mips/hydrao-api",
-            "version": "v0.15",
-            "version_normalized": "0.15.0.0",
+            "version": "v0.16",
+            "version_normalized": "0.16.0.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Mips2648/hydrao-api.git",
-                "reference": "bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d"
+                "reference": "490fcaae1bcc4f7f6fda64c22738ae42908eb627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d",
-                "reference": "bc4b4e09e4a91e072e66df5a3f5a3e776141cd6d",
+                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/490fcaae1bcc4f7f6fda64c22738ae42908eb627",
+                "reference": "490fcaae1bcc4f7f6fda64c22738ae42908eb627",
                 "shasum": ""
             },
             "require": {
                 "mips/httpclient": "~0.7",
                 "psr/log": "~1.0"
             },
-            "time": "2021-11-25T16:14:19+00:00",
+            "time": "2021-11-26T09:14:57+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -79,7 +79,7 @@
             ],
             "description": "Hydrao Api Client",
             "support": {
-                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.15",
+                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.16",
                 "issues": "https://github.com/Mips2648/hydrao-api/issues"
             },
             "install-path": "../mips/hydrao-api"

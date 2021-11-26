@@ -13,7 +13,7 @@ class ShowerHeads extends AbstractApi {
 
     /**
      * @var ShowerHead
-    */
+     */
     private $ShowerHead;
 
     public function showerHead($deviceUUID) {
@@ -37,5 +37,4 @@ class ShowerHeadsResult extends AbstractResult {
     public function getData(): array {
         return $this->data;
     }
-
 }

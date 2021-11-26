@@ -68,7 +68,7 @@ class Client {
 
     /**
      * @var ShowerHeads
-    */
+     */
     private $showerheads;
 
     public function ShowerHeads() {
@@ -78,7 +78,7 @@ class Client {
 
     /**
      * @var Advice
-    */
+     */
     private $advice;
 
     public function Advice() {
@@ -88,7 +88,7 @@ class Client {
 
     /**
      * @var UserStats
-    */
+     */
     private $userStats;
 
     public function UserStats() {

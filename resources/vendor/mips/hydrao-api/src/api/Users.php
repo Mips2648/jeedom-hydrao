@@ -21,5 +21,4 @@ class UsersMeResult extends AbstractResult {
     public function getData(): UserModel {
         return $this->data;
     }
-
 }

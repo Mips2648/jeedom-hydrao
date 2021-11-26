@@ -10,7 +10,7 @@ class UserStats extends AbstractApi {
         $this->client->getLogger()->debug('GET UserStats');
 
         $data = array();
-        if (is_numeric($nbShowers) && $nbShowers>0) {
+        if (is_numeric($nbShowers) && $nbShowers > 0) {
             $data['nbShowers'] = $nbShowers;
         }
         return new UserStatsResult($this->client->doGet('user-stats', $data));
@@ -26,5 +26,4 @@ class UserStatsResult extends AbstractResult {
     public function getData(): UserStatsModel {
         return $this->data;
     }
-
 }
