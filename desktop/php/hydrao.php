@@ -126,32 +126,32 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <a id="bt_createCommands" class="btn btn-default"><i class="fas fa-search"></i> {{Recréer les commandes manquantes}}</a>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hydrao-shower">
                                     <label class="col-sm-4 control-label">{{Type}}</label>
                                     <div class="col-sm-8">
                                         <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="shower_type"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hydrao-shower">
                                     <label class="col-sm-4 control-label"></label>
                                     <div class="col-sm-8">
                                         <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="model_type"></span>
                                         <img src="plugins/hydrao/plugin_info/hydrao_icon.png" data-original=".png" id="img_device" class="img-responsive" style="max-height : 240px;margin-top: 10px" />
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hydrao-shower">
                                     <label class="col-sm-4 control-label">{{Adresse MAC}}</label>
                                     <div class="col-sm-8">
                                         <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="mac_address"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hydrao-shower">
                                     <label class="col-sm-4 control-label">{{Version hardware}}</label>
                                     <div class="col-sm-8">
                                         <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="hw_version"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hydrao-shower">
                                     <label class="col-sm-4 control-label">{{Version firmware}}</label>
                                     <div class="col-sm-8">
                                         <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="fw_version"></span>

@@ -116,6 +116,12 @@ function printEqLogic(_eqLogic) {
             $('#img_device').attr("src", data.result);
         }
     });
+
+    if (_eqLogic.configuration.type == 'showerHead') {
+        $('.hydrao-shower').show();
+    } else {
+        $('.hydrao-shower').hide();
+    }
 }
 
 $('.pluginAction[data-action=openLocation]').on('click', function () {
