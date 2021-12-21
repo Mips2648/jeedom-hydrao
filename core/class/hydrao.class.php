@@ -48,7 +48,7 @@ class hydrao extends eqLogic {
 				$user->setIsEnable(1);
 				$user->setIsVisible(1);
 				$user->setConfiguration('type', 'user');
-				$user->setName($me->getId());
+				$user->setName(__('Tableau de bord', __FILE__));
 				$user->save();
 				$newEqlogic = true;
 			}
