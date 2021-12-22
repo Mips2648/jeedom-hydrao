@@ -150,7 +150,7 @@ $('#bt_synchydrao').on('click', function () {
     });
 });
 
-$('body').on('hydrao::newDevice', function (_event, _options) {
+$('body').off('hydrao::newDevice').on('hydrao::newDevice', function (_event, _options) {
     if (modifyWithoutSave) {
         $('#div_alert').showAlert({ message: '{{Un nouveau pommeau a été synchronisé. Veuillez réactualiser la page}}', level: 'warning' });
     } else {
