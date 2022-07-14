@@ -15,6 +15,6 @@
     ],
     "require": {
         "mips/hydrao-api": "~0.15",
-        "mips/jeedom-tools": "~0.5"
+        "mips/jeedom-tools": ">=0.18"
     }
 }
