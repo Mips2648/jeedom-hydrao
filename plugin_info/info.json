@@ -21,7 +21,6 @@
 		"en_US"
 	],
 	"compatibility": [
-		"miniplus",
 		"smart",
 		"atlas",
 		"rpi",
