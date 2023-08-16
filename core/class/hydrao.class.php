@@ -11,9 +11,13 @@ class hydrao extends eqLogic {
 	public static $_encryptConfigKey = array('username', 'password', 'apikey');
 
 	public static function cronHourly() {
-		try {
-			hydrao::syncDevices();
-		} catch (\Throwable $th) {
+		$client = hydrao::getClient();
+		/** @var hydrao */
+		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {
+			try {
+				$hydrao->refreshHydraoData($client);
+			} catch (Exception $e) {
+			}
 		}
 	}
 

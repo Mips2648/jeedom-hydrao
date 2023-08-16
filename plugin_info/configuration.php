@@ -32,15 +32,26 @@ if (!isConnect()) {
             </div>
         </div>
         <div class="form-group">
+
             <label class="col-sm-4 control-label">{{Mot de passe}}</label>
             <div class="col-sm-4">
-                <input type="password" class="configKey form-control" data-l1key="password" placeholder="{{Saisir le mot de passe}}" />
+                <div class="input-group">
+                    <input type="text" class="configKey form-control roundedLeft inputPassword" data-l1key="password" autocomplete="off" />
+                    <span class=" input-group-btn">
+                        <a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label">{{Clé API}}</label>
             <div class="col-sm-4">
-                <input type="password" class="configKey form-control" data-l1key="apikey" placeholder="{{Saisir la clé API}}" />
+                <div class="input-group">
+                    <input type="text" class="configKey form-control roundedLeft inputPassword" data-l1key="apikey" autocomplete="off" />
+                    <span class="input-group-btn">
+                        <a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+                    </span>
+                </div>
             </div>
         </div>
         <legend><i class="fas fa-sync"></i> {{synchronisation}}</legend>
