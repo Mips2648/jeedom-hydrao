@@ -10,7 +10,9 @@ class hydrao extends eqLogic {
 
 	public static $_encryptConfigKey = array('username', 'password', 'apikey');
 
-	public static function cronHourly() {
+	public static function hourlyRefresh() {
+		if (config::byKey('autorefresh', 'hydrao', 0) == 0) return;
+
 		$client = hydrao::getClient();
 		/** @var hydrao */
 		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {

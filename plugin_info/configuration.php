@@ -56,6 +56,12 @@ if (!isConnect()) {
         </div>
         <legend><i class="fas fa-sync"></i> {{synchronisation}}</legend>
         <div class="form-group">
+            <label class="col-sm-4 control-label">{{Auto-actualisation}}</label>
+            <div class="col-sm-2">
+                <label class=""><input type="checkbox" class="configKey form-control" data-l1key="autorefresh" /> {{Activer}}</label>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-4 control-label">{{Nombre de douche à synchroniser}}</label>
             <div class="col-sm-2">
                 <input type="text" class="configKey form-control" data-l1key="syncLimit" placeholder="500" />

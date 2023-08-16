@@ -20,14 +20,47 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function hydrao_install() {
 
+    config::save('autorefresh', 1, 'hydrao');
+
+    $cron = cron::byClassAndFunction('hydrao', 'hourlyRefresh');
+    if (!is_object($cron)) {
+        $cron = new cron();
+        $cron->setClass('hydrao');
+        $cron->setFunction('hourlyRefresh');
+    }
+    $cron->setEnable(1);
+    $cron->setDeamon(0);
+    $cron->setSchedule(rand(0, 59) . ' * * * *');
+    $cron->setTimeout(10);
+    $cron->save();
 }
 
 function hydrao_update() {
+    config::save('autorefresh', 1, 'hydrao');
 
+    $cron = cron::byClassAndFunction('hydrao', 'hourlyRefresh');
+    if (!is_object($cron)) {
+        $cron = new cron();
+        $cron->setClass('hydrao');
+        $cron->setFunction('hourlyRefresh');
+    }
+    $cron->setEnable(1);
+    $cron->setDeamon(0);
+    $cron->setSchedule(rand(0, 59) . ' * * * *');
+    $cron->setTimeout(10);
+    $cron->save();
 }
 
 function hydrao_remove() {
+    config::remove('autorefresh', 'hydrao');
 
+    try {
+        $crons = cron::searchClassAndFunction('hydrao', 'hourlyRefresh');
+        if (is_array($crons)) {
+            foreach ($crons as $cron) {
+                $cron->remove();
+            }
+        }
+    } catch (Exception $e) {
+    }
 }
-
-?>
