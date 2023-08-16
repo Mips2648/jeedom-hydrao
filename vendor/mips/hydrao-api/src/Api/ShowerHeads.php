@@ -11,14 +11,9 @@ class ShowerHeads extends AbstractApi {
         return new ShowerHeadsResult($this->client->doGet('shower-heads'));
     }
 
-    /**
-     * @var ShowerHead
-     */
-    private $ShowerHead;
-
     public function showerHead($deviceUUID) {
         $this->client->getLogger()->debug("build ShowerHead");
-        return $this->ShowerHead ?: ($this->showerheads = new ShowerHead($this->client, $deviceUUID));
+        return new ShowerHead($this->client, $deviceUUID);
     }
 }
 

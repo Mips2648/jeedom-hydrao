@@ -87,10 +87,6 @@ class AccessToken {
             $parameters['expires'] = $this->expires;
         }
 
-        if ($this->resourceOwnerId) {
-            $parameters['resource_owner_id'] = $this->resourceOwnerId;
-        }
-
         return $parameters;
     }
 }
