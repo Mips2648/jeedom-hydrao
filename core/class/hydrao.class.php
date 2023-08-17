@@ -17,7 +17,18 @@ class hydrao extends eqLogic {
 		/** @var hydrao */
 		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {
 			try {
-				$hydrao->refreshHydraoData($client);
+				$hydrao->refreshHydraoData($client, false);
+			} catch (Exception $e) {
+			}
+		}
+	}
+
+	public static function cronDaily() {
+		/** @var hydrao */
+		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {
+			if ($hydrao->getConfiguration('type') != 'user') continue;
+			try {
+				$hydrao->refreshHydraoData();
 			} catch (Exception $e) {
 			}
 		}
@@ -164,11 +175,11 @@ class hydrao extends eqLogic {
 	}
 
 	private function refreshShowers(Client $client) {
+		$newShowers = 0;
 		try {
 			$lastShowerId = $this->getConfiguration('last_shower_id', 0);
 			$result = $client->ShowerHeads()->showerHead($this->getLogicalId())->showers(config::byKey('syncLimit', __CLASS__, 500), $lastShowerId);
 			if ($result->isSuccess()) {
-				$newShowers = 0;
 				foreach (array_reverse($result->getData()) as $shower) {
 					if ($lastShowerId == $shower->getId()) continue;
 					$lastShowerId = $shower->getId();
@@ -189,21 +200,27 @@ class hydrao extends eqLogic {
 		} catch (\Throwable $th) {
 			log::add(__CLASS__, 'error', 'error get showers:' . $th->getMessage());
 		}
+		return $newShowers;
 	}
 
-	public function refreshHydraoData(?Client $client = null) {
+	public function refreshHydraoData(?Client $client = null, $includeUserStats = true) {
 		$client ?: ($client = hydrao::getClient());
 		$type = $this->getConfiguration('type');
 		switch ($type) {
 			case 'showerHead':
 				log::add(__CLASS__, 'info', 'Refresh showerHead');
-				$this->refreshShowers($client);
-				$this->refreshShowerStats($client);
+				if ($this->refreshShowers($client) > 0) {
+					$this->refreshShowerStats($client);
+				}
 				break;
 			case 'user':
-				log::add(__CLASS__, 'info', 'Refresh user stats');
-				$this->refreshUserStats($client);
-				break;
+				if ($includeUserStats) {
+					log::add(__CLASS__, 'info', 'Refresh user stats');
+					$this->refreshUserStats($client);
+					break;
+				} else {
+					log::add(__CLASS__, 'debug', 'Refresh user stats');
+				}
 			default:
 				log::add(__CLASS__, 'warning', "Unknown hydrao eqLogic type: ({$type})");
 				break;
