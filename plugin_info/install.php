@@ -19,7 +19,6 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function hydrao_install() {
-
     config::save('autorefresh', 1, 'hydrao');
 
     $cron = cron::byClassAndFunction('hydrao', 'hourlyRefresh');

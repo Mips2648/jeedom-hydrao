@@ -218,8 +218,6 @@ class hydrao extends eqLogic {
 					log::add(__CLASS__, 'info', 'Refresh user stats');
 					$this->refreshUserStats($client);
 					break;
-				} else {
-					log::add(__CLASS__, 'debug', 'Refresh user stats');
 				}
 			default:
 				log::add(__CLASS__, 'warning', "Unknown hydrao eqLogic type: ({$type})");
