@@ -29,7 +29,7 @@ function hydrao_install() {
     }
     $cron->setEnable(1);
     $cron->setDeamon(0);
-    $cron->setSchedule(rand(0, 59) . ' * * * *');
+    $cron->setSchedule(rand(0, 59) . ' */2 * * *');
     $cron->setTimeout(10);
     $cron->save();
 }
@@ -45,7 +45,7 @@ function hydrao_update() {
     }
     $cron->setEnable(1);
     $cron->setDeamon(0);
-    $cron->setSchedule(rand(0, 59) . ' * * * *');
+    $cron->setSchedule(rand(0, 59) . ' */2 * * *');
     $cron->setTimeout(10);
     $cron->save();
 }
