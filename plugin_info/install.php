@@ -34,7 +34,7 @@ function hydrao_update() {
     }
 
     /** @var hydrao */
-    foreach (eqLogic::byType(__CLASS__, true) as $eqLogic) {
+    foreach (eqLogic::byType('hydrao', true) as $eqLogic) {
         try {
             if ($eqLogic->getConfiguration('autorefresh') == '') {
                 if ($eqLogic->getConfiguration('type') == 'showerHead')
