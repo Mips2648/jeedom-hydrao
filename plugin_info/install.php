@@ -19,40 +19,10 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function hydrao_install() {
-    config::save('autorefresh', 1, 'hydrao');
-
-    $cron = cron::byClassAndFunction('hydrao', 'hourlyRefresh');
-    if (!is_object($cron)) {
-        $cron = new cron();
-        $cron->setClass('hydrao');
-        $cron->setFunction('hourlyRefresh');
-    }
-    $cron->setEnable(1);
-    $cron->setDeamon(0);
-    $cron->setSchedule(rand(0, 59) . ' */2 * * *');
-    $cron->setTimeout(10);
-    $cron->save();
 }
 
 function hydrao_update() {
-    config::save('autorefresh', 1, 'hydrao');
-
-    $cron = cron::byClassAndFunction('hydrao', 'hourlyRefresh');
-    if (!is_object($cron)) {
-        $cron = new cron();
-        $cron->setClass('hydrao');
-        $cron->setFunction('hourlyRefresh');
-    }
-    $cron->setEnable(1);
-    $cron->setDeamon(0);
-    $cron->setSchedule(rand(0, 59) . ' */2 * * *');
-    $cron->setTimeout(10);
-    $cron->save();
-}
-
-function hydrao_remove() {
     config::remove('autorefresh', 'hydrao');
-
     try {
         $crons = cron::searchClassAndFunction('hydrao', 'hourlyRefresh');
         if (is_array($crons)) {
@@ -62,4 +32,25 @@ function hydrao_remove() {
         }
     } catch (Exception $e) {
     }
+
+    /** @var hydrao */
+    foreach (eqLogic::byType(__CLASS__, true) as $eqLogic) {
+        try {
+            if ($eqLogic->getConfiguration('autorefresh') == '') {
+                if ($eqLogic->getConfiguration('type') == 'showerHead')
+                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' */2 * * *');
+                if ($eqLogic->getConfiguration('type') == 'user')
+                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4 * * *');
+                $eqLogic->save(true);
+            }
+        } catch (Exception $e) {
+        }
+    }
+}
+
+function hydrao_remove() {
+    config::remove('syncLimit', 'hydrao');
+    config::remove('username', 'hydrao');
+    config::remove('password', 'hydrao');
+    config::remove('apikey', 'hydrao');
 }

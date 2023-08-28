@@ -68,100 +68,114 @@ $eqLogics = eqLogic::byType($plugin->getId());
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
-                <br />
-                <div class="row">
-                    <div class="col-sm-7">
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                                        <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}" />
-                                    </div>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="col-sm-7">
+                            <legend><i class="fas fa-wrench"></i> {{Paramètres généraux}}</legend>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
+                                    <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}" />
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Objet parent}}</label>
-                                    <div class="col-sm-3">
-                                        <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
-                                            <option value="">{{Aucun}}</option>
-                                            <?php
-                                            $options = '';
-                                            foreach ((jeeObject::buildTree(null, false)) as $object) {
-                                                $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
-                                            }
-                                            echo $options;
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Catégorie}}</label>
-                                    <div class="col-sm-9">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Objet parent}}</label>
+                                <div class="col-sm-4">
+                                    <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
+                                        <option value="">{{Aucun}}</option>
                                         <?php
-                                        foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                                            echo '<label class="checkbox-inline">';
-                                            echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-                                            echo '</label>';
+                                        $options = '';
+                                        foreach ((jeeObject::buildTree(null, false)) as $object) {
+                                            $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
                                         }
+                                        echo $options;
                                         ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                                <div class="col-sm-9">
+                                    <?php
+                                    foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                                        echo '<label class="checkbox-inline">';
+                                        echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+                                        echo '</label>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" />{{Activer}}</label>
+                                    <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" />{{Visible}}</label>
+                                </div>
+                            </div>
+
+                            <legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Auto-actualisation}}
+                                    <sup><i class="fas fa-question-circle tooltips" title="{{Fréquence de rafraîchissement des commandes infos de l'équipement}}"></i></sup>
+                                </label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="autorefresh" placeholder="{{Cliquer sur ? pour afficher l'assistant cron}}">
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor jeeHelper roundedRight" data-helper="cron" title="Assistant cron">
+                                                <i class="fas fa-question-circle"></i>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label"></label>
-                                    <div class="col-sm-9">
-                                        <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" />{{Activer}}</label>
-                                        <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" />{{Visible}}</label>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <legend><i class="fas fa-info"></i> {{Informations}}</legend>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"></label>
+                                <div class="col-sm-8">
+                                    <a id="bt_createCommands" class="btn btn-default"><i class="fas fa-search"></i> {{Recréer les commandes manquantes}}</a>
                                 </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="col-sm-5">
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label"></label>
-                                    <div class="col-sm-8">
-                                        <a id="bt_createCommands" class="btn btn-default"><i class="fas fa-search"></i> {{Recréer les commandes manquantes}}</a>
-                                    </div>
+                            </div>
+                            <div class="form-group hydrao-shower">
+                                <label class="col-sm-4 control-label">{{Type}}</label>
+                                <div class="col-sm-8">
+                                    <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="shower_type"></span>
                                 </div>
-                                <div class="form-group hydrao-shower">
-                                    <label class="col-sm-4 control-label">{{Type}}</label>
-                                    <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="shower_type"></span>
-                                    </div>
+                            </div>
+                            <div class="form-group hydrao-shower">
+                                <label class="col-sm-4 control-label"></label>
+                                <div class="col-sm-8">
+                                    <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="model_type"></span>
+                                    <img src="plugins/hydrao/plugin_info/hydrao_icon.png" data-original=".png" id="img_device" class="img-responsive" style="max-height : 240px;margin-top: 10px" />
                                 </div>
-                                <div class="form-group hydrao-shower">
-                                    <label class="col-sm-4 control-label"></label>
-                                    <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="model_type"></span>
-                                        <img src="plugins/hydrao/plugin_info/hydrao_icon.png" data-original=".png" id="img_device" class="img-responsive" style="max-height : 240px;margin-top: 10px" />
-                                    </div>
+                            </div>
+                            <div class="form-group hydrao-shower">
+                                <label class="col-sm-4 control-label">{{Adresse MAC}}</label>
+                                <div class="col-sm-8">
+                                    <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="mac_address"></span>
                                 </div>
-                                <div class="form-group hydrao-shower">
-                                    <label class="col-sm-4 control-label">{{Adresse MAC}}</label>
-                                    <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="mac_address"></span>
-                                    </div>
+                            </div>
+                            <div class="form-group hydrao-shower">
+                                <label class="col-sm-4 control-label">{{Version hardware}}</label>
+                                <div class="col-sm-8">
+                                    <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="hw_version"></span>
                                 </div>
-                                <div class="form-group hydrao-shower">
-                                    <label class="col-sm-4 control-label">{{Version hardware}}</label>
-                                    <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="hw_version"></span>
-                                    </div>
+                            </div>
+                            <div class="form-group hydrao-shower">
+                                <label class="col-sm-4 control-label">{{Version firmware}}</label>
+                                <div class="col-sm-8">
+                                    <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="fw_version"></span>
                                 </div>
-                                <div class="form-group hydrao-shower">
-                                    <label class="col-sm-4 control-label">{{Version firmware}}</label>
-                                    <div class="col-sm-8">
-                                        <span class="label label-default eqLogicAttr" data-l1key="configuration" data-l2key="fw_version"></span>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </form>
             </div>
+
             <div role="tabpanel" class="tab-pane" id="commandtab">
                 <div class="table-responsive">
                     <table id="table_cmd" class="table table-bordered table-condensed">

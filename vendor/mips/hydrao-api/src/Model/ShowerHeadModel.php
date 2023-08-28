@@ -32,6 +32,10 @@ class ShowerHeadModel extends BaseModel {
         return $this->jsonData->fw_version;
     }
 
+    public function getLastSeen() {
+        return $this->jsonData->last_seen;
+    }
+
     // {
     //     "device_uuid":"0c47xxxxxxxx0045",
     //     "first_seen":"2019-08-08T20:47:41.000Z",

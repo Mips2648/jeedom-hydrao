@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
+use Mips\HydraoClient\AccessToken;
 use Mips\HydraoClient\Client;
 
 class hydrao extends eqLogic {
@@ -10,39 +11,81 @@ class hydrao extends eqLogic {
 
 	public static $_encryptConfigKey = array('username', 'password', 'apikey');
 
-	public static function hourlyRefresh() {
-		if (config::byKey('autorefresh', 'hydrao', 0) == 0) return;
-
-		$client = hydrao::getClient();
+	public static function cron() {
 		/** @var hydrao */
-		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {
+		foreach (self::byType(__CLASS__, true) as $eqLogic) {
+			$autorefresh = $eqLogic->getConfiguration('autorefresh');
+			if ($autorefresh == '')  continue;
 			try {
-				$hydrao->refreshHydraoData($client, false);
+				$cron = new Cron\CronExpression($autorefresh, new Cron\FieldFactory);
+				if ($cron->isDue()) {
+					$eqLogic->refreshHydraoData();
+				}
 			} catch (Exception $e) {
+				log::add(__CLASS__, 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
 			}
 		}
 	}
 
-	public static function cronDaily() {
-		/** @var hydrao */
-		foreach (eqLogic::byType(__CLASS__, true) as $hydrao) {
-			if ($hydrao->getConfiguration('type') != 'user') continue;
-			try {
-				$hydrao->refreshHydraoData();
-			} catch (Exception $e) {
-			}
+	/**
+	 * Get access token from cache.
+	 *
+	 * @return AccessToken
+	 */
+	private static function getAccessTokenFromCache() {
+		if (cache::exist('hydrao::accessToken')) {
+			log::add(__CLASS__, 'debug', "get token from cache");
+			return new AccessToken(cache::byKey('hydrao::accessToken')->getValue());
 		}
+		return null;
 	}
+
+	/**
+	 * Save access token to cache.
+	 *
+	 * @param  AccessToken $accessToken
+	 */
+	private static function setAccessTokenToCache($accessToken) {
+		log::add(__CLASS__, 'debug', "set token to cache, token is valid until " . date('Y-m-d H:i:s', $accessToken->getExpires()));
+		cache::set('hydrao::accessToken', $accessToken->jsonSerialize());
+	}
+
+	/** @var \Mips\HydraoClient\Client */
+	private static $_client;
 
 	private static function getClient() {
+		if (hydrao::$_client)
+			return hydrao::$_client;
+
+		$apikey = config::byKey('apikey', __CLASS__);
+		hydrao::$_client = new Client($apikey, log::getLogger(__CLASS__));
+
+		$accessToken = hydrao::getAccessTokenFromCache();
+		if ($accessToken !== null) {
+			log::add(__CLASS__, 'debug', "existing token, opening session");
+
+			try {
+				$newAccessToken = hydrao::$_client->openSession($accessToken);
+				hydrao::setAccessTokenToCache($newAccessToken);
+				return hydrao::$_client;
+			} catch (\Throwable $th) {
+				hydrao::$_client = null;
+				log::add(__CLASS__, 'error', $th->getMessage());
+				throw $th;
+			}
+		}
+
+		// session open failed or no token in cache
 		$username = config::byKey('username', __CLASS__);
 		$password = config::byKey('password', __CLASS__);
-		$apikey = config::byKey('apikey', __CLASS__);
-		$client = new Client($apikey, log::getLogger(__CLASS__));
-		if (!$client->login($username, $password)) {
-			throw new Exception("Login failed");
+
+		try {
+			$newAccessToken = hydrao::$_client->newSession($username, $password);
+			hydrao::setAccessTokenToCache($newAccessToken);
+		} catch (\Throwable $th) {
+			hydrao::$_client = null;
+			throw $th;
 		}
-		return $client;
 	}
 
 	public static function syncDevices() {
@@ -50,7 +93,7 @@ class hydrao extends eqLogic {
 		$client = hydrao::getClient();
 		$newEqlogic = false;
 
-		$result = $client->Users()->me();
+		$result = $client->users()->me();
 		if ($result->isSuccess()) {
 			$me = $result->getData();
 			/**
@@ -65,14 +108,15 @@ class hydrao extends eqLogic {
 				$user->setIsEnable(1);
 				$user->setIsVisible(1);
 				$user->setConfiguration('type', 'user');
+				$user->setConfiguration('autorefresh', rand(0, 59) . ' 4 * * *');
 				$user->setName(__('Tableau de bord', __FILE__));
 				$user->save();
 				$newEqlogic = true;
 			}
-			$user->refreshHydraoData($client);
+			$user->refreshHydraoData();
 		}
 
-		$result = $client->ShowerHeads()->get();
+		$result = $client->showerHeads()->get();
 		if ($result->isSuccess()) {
 			foreach ($result->getData() as $showerHead) {
 				log::add(__CLASS__, 'debug', "showerHead:{$showerHead}");
@@ -95,6 +139,7 @@ class hydrao extends eqLogic {
 					$eqLogic->setConfiguration('fw_version', $showerHead->getFWVersion());
 					$eqLogic->setConfiguration('shower_type', $showerHead->getType());
 					$eqLogic->setConfiguration('type', 'showerHead');
+					$user->setConfiguration('autorefresh', rand(0, 59) . ' */2 * * *');
 					$eqLogic->save();
 					$newEqlogic = true;
 				}
@@ -103,7 +148,7 @@ class hydrao extends eqLogic {
 				$eqLogic->checkAndUpdateCmd('lastSyncDate', $dateTime);
 
 
-				$eqLogic->refreshHydraoData($client);
+				$eqLogic->refreshHydraoData();
 			}
 		} else {
 			log::add(__CLASS__, 'warning', "getShowerHeads: ({$result->getHttpStatusCode()}){$result->getHttpError()}");
@@ -142,7 +187,7 @@ class hydrao extends eqLogic {
 
 	private function refreshUserStats(Client $client) {
 		try {
-			$result = $client->UserStats()->get();
+			$result = $client->userStats()->get();
 			if ($result->isSuccess()) {
 				$userStats = $result->getData();
 				log::add(__CLASS__, 'debug', "userStats: {$userStats}");
@@ -152,7 +197,7 @@ class hydrao extends eqLogic {
 				$this->checkAndUpdateCmd('total_volume_saved', $userStats->getTotalVolumeSavedValue());
 				$this->checkAndUpdateCmd('total_money_saved', $userStats->getTotalMoneySavedValue());
 			}
-			$result = $client->Advice()->get();
+			$result = $client->advice()->get();
 			if ($result->isSuccess()) {
 				$this->checkAndUpdateCmd('advice', $result->getData()->getDescription());
 			}
@@ -163,7 +208,7 @@ class hydrao extends eqLogic {
 
 	private function refreshShowerStats(client $client) {
 		try {
-			$result = $client->ShowerHeads()->showerHead($this->getLogicalId())->stats(100);
+			$result = $client->showerHeads()->showerHead($this->getLogicalId())->stats(100);
 			if ($result->isSuccess()) {
 				$showerStats = $result->getData();
 				log::add(__CLASS__, 'debug', 'shower:' . $showerStats);
@@ -178,7 +223,7 @@ class hydrao extends eqLogic {
 		$newShowers = 0;
 		try {
 			$lastShowerId = $this->getConfiguration('last_shower_id', 0);
-			$result = $client->ShowerHeads()->showerHead($this->getLogicalId())->showers(config::byKey('syncLimit', __CLASS__, 500), $lastShowerId);
+			$result = $client->showerHeads()->showerHead($this->getLogicalId())->showers(config::byKey('syncLimit', __CLASS__, 500), $lastShowerId);
 			if ($result->isSuccess()) {
 				foreach (array_reverse($result->getData()) as $shower) {
 					if ($lastShowerId == $shower->getId()) continue;
@@ -203,8 +248,8 @@ class hydrao extends eqLogic {
 		return $newShowers;
 	}
 
-	public function refreshHydraoData(?Client $client = null, $includeUserStats = true) {
-		$client ?: ($client = hydrao::getClient());
+	public function refreshHydraoData() {
+		$client = hydrao::getClient();
 		$type = $this->getConfiguration('type');
 		switch ($type) {
 			case 'showerHead':
@@ -214,10 +259,8 @@ class hydrao extends eqLogic {
 				}
 				break;
 			case 'user':
-				if ($includeUserStats) {
-					log::add(__CLASS__, 'info', 'Refresh user stats');
-					$this->refreshUserStats($client);
-				}
+				log::add(__CLASS__, 'info', 'Refresh user stats');
+				$this->refreshUserStats($client);
 				break;
 			default:
 				log::add(__CLASS__, 'warning', "Unknown hydrao eqLogic type: ({$type})");

@@ -47,16 +47,16 @@
         },
         {
             "name": "mips/hydrao-api",
-            "version": "v0.17",
+            "version": "v0.18",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Mips2648/hydrao-api.git",
-                "reference": "f0197351c5a4bd5c8a6e062ba41ed09d4f3e5690"
+                "reference": "3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/f0197351c5a4bd5c8a6e062ba41ed09d4f3e5690",
-                "reference": "f0197351c5a4bd5c8a6e062ba41ed09d4f3e5690",
+                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85",
+                "reference": "3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85",
                 "shasum": ""
             },
             "require": {
@@ -79,10 +79,10 @@
             ],
             "description": "Hydrao Api Client",
             "support": {
-                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.17",
+                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.18",
                 "issues": "https://github.com/Mips2648/hydrao-api/issues"
             },
-            "time": "2023-01-16T09:45:28+00:00"
+            "time": "2023-08-28T06:40:35+00:00"
         },
         {
             "name": "mips/jeedom-tools",

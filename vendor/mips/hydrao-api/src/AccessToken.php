@@ -39,7 +39,9 @@ class AccessToken {
             $this->refreshToken = $options['refresh_token'];
         }
 
-        if (isset($options['expires_in'])) {
+        if (isset($options['expires'])) {
+            $this->expires = $options['expires'];
+        } elseif (isset($options['expires_in'])) {
             if (!is_numeric($options['expires_in'])) {
                 throw new \InvalidArgumentException('expires_in value must be an integer');
             }

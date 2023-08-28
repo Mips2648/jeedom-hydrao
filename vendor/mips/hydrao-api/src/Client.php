@@ -10,6 +10,7 @@ use Mips\HydraoClient\Api\UserStats;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use InvalidArgumentException;
 
 /**
  * Hydrao Client
@@ -38,30 +39,53 @@ class Client {
     }
 
     /**
-     * login
+     * Create a new session from user and password
+     * Access Token will be set in header and returned
      * @param string $user
      * @param string $pass
      * @throws Exception
      */
-    public function login(string $user, string $pass) {
+    public function newSession(string $user, string $pass) {
+        if ($user == '' || $pass == '') {
+            throw new InvalidArgumentException("You must provide user and password.");
+        }
         $data = [
             'email' => $user,
             'password' => $pass,
         ];
+        return $this->doLogin($data);
+    }
 
+    public function openSession(AccessToken $token) {
+        if ($token->hasExpired()) {
+            $data = [
+                'refreshToken"' => $token->getRefreshToken()
+            ];
+            return $this->doLogin($data);
+        } else {
+            return $this->setToken($token);
+        }
+    }
+
+    private function doLogin($data) {
         $result = $this->httpClient->doPost('sessions', $data);
         if ($result->isSuccess()) {
-            $this->accesstoken = new AccessToken(json_decode($result->getBody(), true));
-            $this->httpClient->getHttpHeaders()->setHeader('Authorization', 'Bearer ' . $this->accesstoken->getToken());
-            $this->logger->debug("access token header set");
-            return true;
+            return $this->setToken(new AccessToken(json_decode($result->getBody(), true)));
+        } else {
+            throw new RuntimeException("Login failed: ({$result->getHttpStatusCode()}){$result->getError()} - response received: {$result->getBody()}");
         }
-        throw new RuntimeException("Login failed: ({$result->getHttpStatusCode()}){$result->getError()} - response received: {$result->getBody()}");
+    }
+
+    private function setToken(AccessToken $token) {
+        $this->accesstoken = $token;
+        $this->httpClient->getHttpHeaders()->setHeader('Authorization', 'Bearer ' . $this->accesstoken->getToken());
+        $this->logger->debug("access token header set");
+        return $this->accesstoken;
     }
 
     private $users;
 
-    public function Users() {
+    public function users() {
         $this->logger->debug("users");
         return $this->users ?: ($this->users = new Users($this->httpClient));
     }
@@ -71,8 +95,7 @@ class Client {
      */
     private $showerheads;
 
-    public function ShowerHeads() {
-        $this->logger->debug("ShowerHeads");
+    public function showerHeads() {
         return $this->showerheads ?: ($this->showerheads = new ShowerHeads($this->httpClient));
     }
 
@@ -81,8 +104,7 @@ class Client {
      */
     private $advice;
 
-    public function Advice() {
-        $this->logger->debug("Advice");
+    public function advice() {
         return $this->advice ?: ($this->advice = new Advice($this->httpClient));
     }
 
@@ -91,8 +113,7 @@ class Client {
      */
     private $userStats;
 
-    public function UserStats() {
-        $this->logger->debug("UserStats");
+    public function userStats() {
         return $this->userStats ?: ($this->userStats = new UserStats($this->httpClient));
     }
 }
