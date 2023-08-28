@@ -82,6 +82,7 @@ class hydrao extends eqLogic {
 		try {
 			$newAccessToken = hydrao::$_client->newSession($username, $password);
 			hydrao::setAccessTokenToCache($newAccessToken);
+			return hydrao::$_client;
 		} catch (\Throwable $th) {
 			hydrao::$_client = null;
 			throw $th;
