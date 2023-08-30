@@ -69,13 +69,11 @@ class hydrao extends eqLogic {
 				hydrao::setAccessTokenToCache($newAccessToken);
 				return hydrao::$_client;
 			} catch (\Throwable $th) {
-				hydrao::$_client = null;
-				log::add(__CLASS__, 'error', $th->getMessage());
-				throw $th;
+				log::add(__CLASS__, 'info', $th->getMessage());
 			}
 		}
 
-		// session open failed or no token in cache
+		log::add(__CLASS__, 'debug', "session open failed or no token in cache");
 		$username = config::byKey('username', __CLASS__);
 		$password = config::byKey('password', __CLASS__);
 
