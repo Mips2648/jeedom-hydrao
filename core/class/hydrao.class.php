@@ -92,6 +92,7 @@ class hydrao extends eqLogic {
 		$client = hydrao::getClient();
 		$newEqlogic = false;
 
+		sleep(1);
 		$result = $client->users()->me();
 		if ($result->isSuccess()) {
 			$me = $result->getData();
@@ -112,9 +113,13 @@ class hydrao extends eqLogic {
 				$user->save();
 				$newEqlogic = true;
 			}
+			sleep(1);
 			$user->refreshHydraoData();
+		} else {
+			log::add(__CLASS__, 'warning', "Error while getting new user data: ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 		}
 
+		sleep(1);
 		$result = $client->showerHeads()->get();
 		if ($result->isSuccess()) {
 			foreach ($result->getData() as $showerHead) {
@@ -146,11 +151,11 @@ class hydrao extends eqLogic {
 				$dateTime = (new DateTime($showerHead->getLastSyncDate()))->format('Y-m-d H:i:s');
 				$eqLogic->checkAndUpdateCmd('lastSyncDate', $dateTime);
 
-
+				sleep(1);
 				$eqLogic->refreshHydraoData();
 			}
 		} else {
-			log::add(__CLASS__, 'warning', "getShowerHeads: ({$result->getHttpStatusCode()}){$result->getHttpError()}");
+			log::add(__CLASS__, 'warning', "Error while getting new showerHeads: ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 		}
 		if ($newEqlogic) {
 			event::add('hydrao::newDevice');
@@ -195,10 +200,14 @@ class hydrao extends eqLogic {
 				$this->checkAndUpdateCmd('total_energy_saved', $userStats->getTotalEnergySavedValue());
 				$this->checkAndUpdateCmd('total_volume_saved', $userStats->getTotalVolumeSavedValue());
 				$this->checkAndUpdateCmd('total_money_saved', $userStats->getTotalMoneySavedValue());
+			} else {
+				log::add(__CLASS__, 'warning', "Error while getting userStats: ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 			}
 			$result = $client->advice()->get();
 			if ($result->isSuccess()) {
 				$this->checkAndUpdateCmd('advice', $result->getData()->getDescription());
+			} else {
+				log::add(__CLASS__, 'warning', "Error while getting advice: ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 			}
 		} catch (\Throwable $th) {
 			log::add(__CLASS__, 'error', 'error get UserStats:' . $th->getMessage());
@@ -212,6 +221,8 @@ class hydrao extends eqLogic {
 				$showerStats = $result->getData();
 				log::add(__CLASS__, 'debug', 'shower:' . $showerStats);
 				$this->checkAndUpdateCmd('volume_average', $showerStats->getVolumeAverage());
+			} else {
+				log::add(__CLASS__, 'warning', "Error while getting stats for showerHead '{$this->getLogicalId()}': ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 			}
 		} catch (\Throwable $th) {
 			//throw $th;
@@ -240,6 +251,8 @@ class hydrao extends eqLogic {
 				log::add(__CLASS__, 'info', "All showers synchronized, new:{$newShowers}");
 				$this->setConfiguration('last_shower_id', $lastShowerId);
 				$this->save(true);
+			} else {
+				log::add(__CLASS__, 'warning', "Error while getting showers for showerHead '{$this->getLogicalId()}': ({$result->getHttpStatusCode()}){$result->getHttpError()} - response received: {$result->getResponseBody()}");
 			}
 		} catch (\Throwable $th) {
 			log::add(__CLASS__, 'error', 'error get showers:' . $th->getMessage());
@@ -254,6 +267,7 @@ class hydrao extends eqLogic {
 			case 'showerHead':
 				log::add(__CLASS__, 'info', 'Refresh showerHead');
 				if ($this->refreshShowers($client) > 0) {
+					sleep(1);
 					$this->refreshShowerStats($client);
 				}
 				break;
