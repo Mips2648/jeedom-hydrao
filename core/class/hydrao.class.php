@@ -22,7 +22,7 @@ class hydrao extends eqLogic {
 					$eqLogic->refreshHydraoData();
 				}
 			} catch (Exception $e) {
-				log::add(__CLASS__, 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
+				log::add(__CLASS__, 'error', "Error during refresh of {$eqLogic->getHumanName()}: " . $e->getMessage());
 			}
 		}
 	}
@@ -61,8 +61,8 @@ class hydrao extends eqLogic {
 		hydrao::$_client = new Client($apikey, log::getLogger(__CLASS__));
 
 		$accessToken = hydrao::getAccessTokenFromCache();
-		if ($accessToken !== null) {
-			log::add(__CLASS__, 'debug', "existing token, opening session");
+		if ($accessToken !== null && !$accessToken->hasExpired()) {
+			log::add(__CLASS__, 'debug', "existing valid token, opening session");
 
 			try {
 				$newAccessToken = hydrao::$_client->openSession($accessToken);
@@ -73,7 +73,7 @@ class hydrao extends eqLogic {
 			}
 		}
 
-		log::add(__CLASS__, 'debug', "session open failed or no token in cache");
+		log::add(__CLASS__, 'debug', "session open failed or no valid token in cache");
 		$username = config::byKey('username', __CLASS__);
 		$password = config::byKey('password', __CLASS__);
 
