@@ -1,0 +1,33 @@
+{
+	"id": "hydrao",
+	"name": "hydrao",
+	"description": "Plugin permettant d'intégrer les pommeaux de douches Hydrao.",
+	"utilization": "Le plugin se connecte au cloud Hydrao pour synchroniser les informations avec Jeedom, il est nécessaire de demander une clé API à Hydrao pour avoir accès.",
+	"licence": "AGPL",
+	"author": "Mips",
+	"require": "4.2",
+	"category": "devicecommunication",
+	"hasDependency": false,
+	"hasOwnDeamon": false,
+	"maxDependancyInstallTime": 0,
+	"changelog": "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/changelog",
+	"documentation": "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/",
+	"changelog_beta": "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/changelog",
+	"documentation_beta": "https://mips2648.github.io/jeedom-plugins-docs/hydrao/#language#/",
+	"link": {
+		"forum": "https://community.jeedom.com/tags/plugin-hydrao",
+		"video": ""
+	},
+	"language": [
+		"fr_FR",
+		"en_US"
+	],
+	"compatibility": [
+		"smart",
+		"atlas",
+		"rpi",
+		"docker",
+		"diy",
+		"v4"
+	]
+}
