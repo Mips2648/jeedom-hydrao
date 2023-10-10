@@ -38,7 +38,7 @@ function hydrao_update() {
         try {
             if ($eqLogic->getConfiguration('autorefresh') == '') {
                 if ($eqLogic->getConfiguration('type') == 'showerHead')
-                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' */2 * * *');
+                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
                 if ($eqLogic->getConfiguration('type') == 'user')
                     $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4 * * *');
                 $eqLogic->save(true);

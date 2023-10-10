@@ -143,7 +143,7 @@ class hydrao extends eqLogic {
 					$eqLogic->setConfiguration('fw_version', $showerHead->getFWVersion());
 					$eqLogic->setConfiguration('shower_type', $showerHead->getType());
 					$eqLogic->setConfiguration('type', 'showerHead');
-					$user->setConfiguration('autorefresh', rand(0, 59) . ' */2 * * *');
+					$user->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
 					$eqLogic->save();
 					$newEqlogic = true;
 				}
