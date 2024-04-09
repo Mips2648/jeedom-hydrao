@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8bf2bb3a7ffc1fb6c3e23799fdc227533b459338',
+    'reference' => 'd1fff9e524c08c4bf3cee7991bfed073dcaee561',
     'name' => 'mips/jeedom-hydrao',
   ),
   'versions' => 
@@ -36,16 +36,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8bf2bb3a7ffc1fb6c3e23799fdc227533b459338',
+      'reference' => 'd1fff9e524c08c4bf3cee7991bfed073dcaee561',
     ),
     'mips/jeedom-tools' => 
     array (
-      'pretty_version' => 'v0.18',
-      'version' => '0.18.0.0',
+      'pretty_version' => 'v0.21',
+      'version' => '0.21.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e4b72769e625f82644a8f9626f9dabc1f2dc21f9',
+      'reference' => 'ba7b48ed850f987922e439f120012efedbf5dffa',
     ),
     'psr/log' => 
     array (
