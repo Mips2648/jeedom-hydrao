@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'edf318a679e6332e5ee61126b9917fea8b00c8cf',
+    'reference' => 'b0e6f84b0c2521cd478835739d8af87f89509e8b',
     'name' => 'mips/jeedom-hydrao',
   ),
   'versions' => 
@@ -59,16 +59,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'edf318a679e6332e5ee61126b9917fea8b00c8cf',
+      'reference' => 'b0e6f84b0c2521cd478835739d8af87f89509e8b',
     ),
     'mips/jeedom-tools' => 
     array (
-      'pretty_version' => 'v0.22',
-      'version' => '0.22.0.0',
+      'pretty_version' => 'v0.23',
+      'version' => '0.23.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7399a5da77b442e423b7915095ea88f69b410780',
+      'reference' => 'cc1805a0953ce58415f9e828cd2defacc1bf362d',
     ),
     'psr/log' => 
     array (
