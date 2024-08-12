@@ -13,6 +13,15 @@
             "url": "https://github.com/Mips2648/hydrao-api"
         }
     ],
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {},
+        "platform": {
+            "php": "7.4"
+        }
+    },
     "require": {
         "mips/hydrao-api": "~0.16",
         "mips/jeedom-tools": ">=0.18"
