@@ -1,0 +1,76 @@
+{
+    "plugins\/hydrao\/core\/ajax\/hydrao.ajax.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Aucune méthode correspondante à : ": "No method corresponding to :",
+        "Erreur lors de la création des commandes": "Error creating commands",
+        "Erreur lors de la synchronisation, vérifiez le log": "Synchronization error, check log",
+        "eqLogic non trouvé : ": "eqLogic not found :"
+    },
+    "plugins\/hydrao\/core\/class\/hydrao.class.php": {
+        "Commande inconnue:": "Unknown command:",
+        "Tableau de bord": "Dashboard"
+    },
+    "plugins\/hydrao\/core\/php\/jeehydrao.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action": "You are not authorized to perform this action"
+    },
+    "plugins\/hydrao\/desktop\/js\/hydrao.js": {
+        "Afficher": "Show",
+        "Choisir une icône": "Choose an icon",
+        "Historiser": "Historize",
+        "Inverser": "Invert",
+        "Max": "Maximum",
+        "Min": "Minimum",
+        "Nom de la commande": "Command name",
+        "Opération réalisée avec succès": "Operation successfully completed",
+        "Supprimer la commande": "Delete command",
+        "Synchronisation réussie.": "Successful synchronization.",
+        "Tester": "Test",
+        "Un nouveau pommeau a été synchronisé. Actualisation de la page dans 3s...": "A new knob has been synchronized. Page refresh in 3s...",
+        "Un nouveau pommeau a été synchronisé. Veuillez réactualiser la page": "A new knob has been synchronized. Please refresh the page",
+        "Unité": "Unit"
+    },
+    "plugins\/hydrao\/desktop\/php\/hydrao.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Actions": "Actions",
+        "Activer": "Enable",
+        "Adresse MAC": "MAC address",
+        "Aucun": "None",
+        "Auto-actualisation": "Self-actualization",
+        "Catégorie": "Category",
+        "Cliquer sur ? pour afficher l'assistant cron": "Click on ? to display the cron wizard",
+        "Commandes": "Commands",
+        "Configuration": "Configuration",
+        "Configuration avancée": "Advanced configuration",
+        "Documentation": "Documentation",
+        "Equipement": "Equipment",
+        "Etat": "State",
+        "Fréquence de rafraîchissement des commandes infos de l'équipement": "Equipment info command refresh rate",
+        "Gestion": "Management",
+        "Informations": "Information",
+        "Mes pommeaux": "My knobs",
+        "Nom": "Name",
+        "Nom de l'équipement": "Equipment name",
+        "Objet parent": "Parent object",
+        "Options": "Options",
+        "Paramètres généraux": "General settings",
+        "Paramètres spécifiques": "Specific parameters",
+        "Rechercher": "Search",
+        "Recréer les commandes manquantes": "Recreate missing commands",
+        "Sauvegarder": "Save",
+        "Supprimer": "Delete",
+        "Synchroniser": "Synchronize",
+        "Type": "Type",
+        "Version firmware": "Firmware version",
+        "Version hardware": "Hardware version",
+        "Visible": "Visible"
+    },
+    "plugins\/hydrao\/plugin_info\/configuration.php": {
+        "Authentification": "Authentication",
+        "Clé API": "API key",
+        "Mot de passe": "Password",
+        "Nom d'utilisateur": "Username",
+        "Nombre de douche à synchroniser": "Number of showers to synchronize",
+        "Saisir le nom d'utilisateur": "Enter user name",
+        "synchronisation": "synchronization"
+    }
+}
