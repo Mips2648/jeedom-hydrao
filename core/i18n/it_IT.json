@@ -1,0 +1,76 @@
+{
+    "plugins\/hydrao\/core\/ajax\/hydrao.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Aucune méthode correspondante à : ": "Nessun metodo corrispondente a :",
+        "Erreur lors de la création des commandes": "Errore durante la creazione di comandi",
+        "Erreur lors de la synchronisation, vérifiez le log": "Errore durante la sincronizzazione, controllare il log",
+        "eqLogic non trouvé : ": "eqLogic non trovato :"
+    },
+    "plugins\/hydrao\/core\/class\/hydrao.class.php": {
+        "Commande inconnue:": "Comando sconosciuto:",
+        "Tableau de bord": "Cruscotto"
+    },
+    "plugins\/hydrao\/core\/php\/jeehydrao.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action": "Non siete autorizzati ad eseguire questa azione"
+    },
+    "plugins\/hydrao\/desktop\/js\/hydrao.js": {
+        "Afficher": "Mostra",
+        "Choisir une icône": "Seleziona un\\'icona",
+        "Historiser": "Storicizza",
+        "Inverser": "Inverti",
+        "Max": "Max",
+        "Min": "Min",
+        "Nom de la commande": "Nome del comando",
+        "Opération réalisée avec succès": "Operazione completata con successo",
+        "Supprimer la commande": "Comando di cancellazione",
+        "Synchronisation réussie.": "Sincronizzazione riuscita.",
+        "Tester": "Prova",
+        "Un nouveau pommeau a été synchronisé. Actualisation de la page dans 3s...": "È stata sincronizzata una nuova manopola. Aggiornamento della pagina in 3s...",
+        "Un nouveau pommeau a été synchronisé. Veuillez réactualiser la page": "È stata sincronizzata una nuova manopola. Aggiornare la pagina",
+        "Unité": "Unità"
+    },
+    "plugins\/hydrao\/desktop\/php\/hydrao.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Actions": "Stock",
+        "Activer": "Attivare",
+        "Adresse MAC": "Indirizzo MAC",
+        "Aucun": "Nessuno",
+        "Auto-actualisation": "Aggiornamento automatico",
+        "Catégorie": "Categoria",
+        "Cliquer sur ? pour afficher l'assistant cron": "Fare clic su ? per visualizzare la procedura guidata di cron",
+        "Commandes": "Comandi",
+        "Configuration": "Configurazione",
+        "Configuration avancée": "Configurazione avanzata",
+        "Documentation": "Documentazione",
+        "Equipement": "Dispositivo",
+        "Etat": "Stato",
+        "Fréquence de rafraîchissement des commandes infos de l'équipement": "Frequenza di aggiornamento dei comandi di informazione sulle apparecchiature",
+        "Gestion": "Gestione",
+        "Informations": "Informazioni",
+        "Mes pommeaux": "Le mie manopole",
+        "Nom": "Nome",
+        "Nom de l'équipement": "Nome dell'apparecchiatura",
+        "Objet parent": "Oggetto padre",
+        "Options": "Opzioni",
+        "Paramètres généraux": "Parametri generali",
+        "Paramètres spécifiques": "Parametri specifici",
+        "Rechercher": "Ricercare",
+        "Recréer les commandes manquantes": "Ricreare i comandi mancanti",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Synchroniser": "Sincronizzare",
+        "Type": "Tipo",
+        "Version firmware": "Versione del firmware",
+        "Version hardware": "Versione hardware",
+        "Visible": "Visibile"
+    },
+    "plugins\/hydrao\/plugin_info\/configuration.php": {
+        "Authentification": "Autenticazione",
+        "Clé API": "Chiave API",
+        "Mot de passe": "Password",
+        "Nom d'utilisateur": "Nome utente",
+        "Nombre de douche à synchroniser": "Numero di docce da sincronizzare",
+        "Saisir le nom d'utilisateur": "Inserire il nome utente",
+        "synchronisation": "sincronizzazione"
+    }
+}

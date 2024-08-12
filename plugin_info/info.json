@@ -5,7 +5,9 @@
 		"fr_FR": "Plugin permettant d'intégrer les pommeaux de douches Hydrao.",
 		"en_US": "Plugin for integrating Hydrao showerheads.",
 		"es_ES": "Plugin para integrar cabezales de ducha Hydrao.",
-		"de_DE": "Plugin zur Integration von Hydrao-Duschköpfen."
+		"de_DE": "Plugin zur Integration von Hydrao-Duschköpfen.",
+		"it_IT": "Plugin per l'integrazione dei soffioni Hydrao.",
+		"pt_PT": "Plugin para integração de chuveiros Hydrao."
 	},
 	"utilization": "Le plugin se connecte au cloud Hydrao pour synchroniser les informations avec Jeedom, il est nécessaire de demander une clé API à Hydrao pour avoir accès.",
 	"licence": "AGPL",
@@ -27,7 +29,9 @@
 		"de_DE",
 		"en_US",
 		"es_ES",
-		"fr_FR"
+		"fr_FR",
+		"it_IT",
+		"pt_PT"
 	],
 	"compatibility": [
 		"smart",
