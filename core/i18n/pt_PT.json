@@ -1,0 +1,76 @@
+{
+    "plugins\/hydrao\/core\/ajax\/hydrao.ajax.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a :",
+        "Erreur lors de la création des commandes": "Erro ao criar comandos",
+        "Erreur lors de la synchronisation, vérifiez le log": "Erro durante a sincronização, verificar o registo",
+        "eqLogic non trouvé : ": "eqLogic não encontrado :"
+    },
+    "plugins\/hydrao\/core\/class\/hydrao.class.php": {
+        "Commande inconnue:": "Comando desconhecido:",
+        "Tableau de bord": "Painel de controlo"
+    },
+    "plugins\/hydrao\/core\/php\/jeehydrao.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action": "Não está autorizado a efetuar esta ação"
+    },
+    "plugins\/hydrao\/desktop\/js\/hydrao.js": {
+        "Afficher": "Mostrar",
+        "Choisir une icône": "Escolha um ícone",
+        "Historiser": "Histórico",
+        "Inverser": "Inverter",
+        "Max": "Máx.",
+        "Min": "Mínimo",
+        "Nom de la commande": "Nome do comando",
+        "Opération réalisée avec succès": "Operação concluída com êxito",
+        "Supprimer la commande": "Apagar comando",
+        "Synchronisation réussie.": "Sincronização bem sucedida.",
+        "Tester": "Testar",
+        "Un nouveau pommeau a été synchronisé. Actualisation de la page dans 3s...": "Foi sincronizado um novo botão. Atualização da página em 3s...",
+        "Un nouveau pommeau a été synchronisé. Veuillez réactualiser la page": "Foi sincronizado um novo botão. Actualize a página",
+        "Unité": "Unidade"
+    },
+    "plugins\/hydrao\/desktop\/php\/hydrao.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Actions": "Ações",
+        "Activer": "Ativar",
+        "Adresse MAC": "Endereço MAC",
+        "Aucun": "Nenhum",
+        "Auto-actualisation": "Atualização automática",
+        "Catégorie": "Categoria",
+        "Cliquer sur ? pour afficher l'assistant cron": "Clique em ? para visualizar o assistente de cron",
+        "Commandes": "Comandos",
+        "Configuration": "Configuração",
+        "Configuration avancée": "Configuração avançada",
+        "Documentation": "Documentação",
+        "Equipement": "Equipamento",
+        "Etat": "Estado",
+        "Fréquence de rafraîchissement des commandes infos de l'équipement": "Frequência de atualização dos comandos de informação do equipamento",
+        "Gestion": "Gestão",
+        "Informations": "Informação",
+        "Mes pommeaux": "Os meus puxadores",
+        "Nom": "Nome",
+        "Nom de l'équipement": "Nome do equipamento",
+        "Objet parent": "Objeto pai",
+        "Options": "Opções",
+        "Paramètres généraux": "Parâmetros gerais",
+        "Paramètres spécifiques": "Parâmetros específicos",
+        "Rechercher": "Pesquisar",
+        "Recréer les commandes manquantes": "Recriar comandos em falta",
+        "Sauvegarder": "Guardar",
+        "Supprimer": "Eliminar",
+        "Synchroniser": "Sincronizar",
+        "Type": "Tipo",
+        "Version firmware": "Versão do firmware",
+        "Version hardware": "Versão do hardware",
+        "Visible": "Visível"
+    },
+    "plugins\/hydrao\/plugin_info\/configuration.php": {
+        "Authentification": "Autenticação",
+        "Clé API": "Chave API",
+        "Mot de passe": "Password",
+        "Nom d'utilisateur": "Nome do Utilizador",
+        "Nombre de douche à synchroniser": "Número de chuveiros a sincronizar",
+        "Saisir le nom d'utilisateur": "Introduzir o nome de utilizador",
+        "synchronisation": "sincronização"
+    }
+}
