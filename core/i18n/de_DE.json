@@ -1,0 +1,76 @@
+{
+    "plugins\/hydrao\/core\/ajax\/hydrao.ajax.php": {
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Aucune méthode correspondante à : ": "Keine passende Methode zu :",
+        "Erreur lors de la création des commandes": "Fehler beim Erstellen von Befehlen",
+        "Erreur lors de la synchronisation, vérifiez le log": "Fehler bei der Synchronisation, überprüfen Sie das Log",
+        "eqLogic non trouvé : ": "eqLogic nicht gefunden :"
+    },
+    "plugins\/hydrao\/core\/class\/hydrao.class.php": {
+        "Commande inconnue:": "Befehl unbekannt:",
+        "Tableau de bord": "Dashboard"
+    },
+    "plugins\/hydrao\/core\/php\/jeehydrao.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen"
+    },
+    "plugins\/hydrao\/desktop\/js\/hydrao.js": {
+        "Afficher": "Anzeige",
+        "Choisir une icône": "Wählen Sie ein Symbol",
+        "Historiser": "Chronik",
+        "Inverser": "Umgekehrt",
+        "Max": "Max",
+        "Min": "Minimum",
+        "Nom de la commande": "Name des Befehls",
+        "Opération réalisée avec succès": "Erfolgreich durchgeführte Operation",
+        "Supprimer la commande": "Befehl löschen",
+        "Synchronisation réussie.": "Synchronisation erfolgreich.",
+        "Tester": "Prüfung",
+        "Un nouveau pommeau a été synchronisé. Actualisation de la page dans 3s...": "Ein neuer Kopf wurde synchronisiert. Aktualisierung der Seite in 3s...",
+        "Un nouveau pommeau a été synchronisé. Veuillez réactualiser la page": "Ein neuer Duschkopf wurde synchronisiert. Bitte aktualisieren Sie die Seite erneut",
+        "Unité": "Unit"
+    },
+    "plugins\/hydrao\/desktop\/php\/hydrao.php": {
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Actions": "Lager",
+        "Activer": "Aktivieren",
+        "Adresse MAC": "MAC-Adresse",
+        "Aucun": "Nein",
+        "Auto-actualisation": "Selbstaktualisierung",
+        "Catégorie": "Kategorie",
+        "Cliquer sur ? pour afficher l'assistant cron": "Klicken Sie auf ?, um den Cron-Assistenten anzuzeigen",
+        "Commandes": "Befehle",
+        "Configuration": "Konfiguration",
+        "Configuration avancée": "Erweiterte Konfiguration",
+        "Documentation": "Dokumentation",
+        "Equipement": "Gerät",
+        "Etat": "Zustand",
+        "Fréquence de rafraîchissement des commandes infos de l'équipement": "Häufigkeit der Aktualisierung der Befehle Geräte-Info",
+        "Gestion": "Management",
+        "Informations": "Information",
+        "Mes pommeaux": "Meine Apfelbäume",
+        "Nom": "Name",
+        "Nom de l'équipement": "Name des Geräts",
+        "Objet parent": "Übergeordnetes Objekt",
+        "Options": "Optionen",
+        "Paramètres généraux": "Allgemeine Einstellungen",
+        "Paramètres spécifiques": "Spezifische Einstellungen",
+        "Rechercher": "Suchen nach",
+        "Recréer les commandes manquantes": "Fehlende Befehle neu erstellen",
+        "Sauvegarder": "Zu schützen",
+        "Supprimer": "Entfernen",
+        "Synchroniser": "Synchronisieren",
+        "Type": "Typ",
+        "Version firmware": "Firmware-Version",
+        "Version hardware": "Hardware-Version",
+        "Visible": "Sichtbar"
+    },
+    "plugins\/hydrao\/plugin_info\/configuration.php": {
+        "Authentification": "Authentifizierung",
+        "Clé API": "API Schlüssel",
+        "Mot de passe": "Passwort",
+        "Nom d'utilisateur": "Benutzername",
+        "Nombre de douche à synchroniser": "Anzahl der zu synchronisierenden Duschen",
+        "Saisir le nom d'utilisateur": "Geben Sie den Benutzernamen ein",
+        "synchronisation": "synchronisation"
+    }
+}
