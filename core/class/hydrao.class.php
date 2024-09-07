@@ -58,7 +58,7 @@ class hydrao extends eqLogic {
 			return hydrao::$_client;
 
 		$apikey = config::byKey('apikey', __CLASS__);
-		hydrao::$_client = new Client($apikey, log::getLogger(__CLASS__));
+		hydrao::$_client = new Client($apikey);
 
 		$accessToken = hydrao::getAccessTokenFromCache();
 		if ($accessToken !== null && !$accessToken->hasExpired()) {
