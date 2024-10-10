@@ -18,34 +18,23 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
+function InstallComposerDependencies(string $pluginId) {
+    log::add($pluginId, 'info', 'Install composer dependencies');
+    $cmd = 'cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . system::getCmdSudo() . 'composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . system::getCmdSudo() . ' chown -R www-data:www-data *';
+    shell_exec($cmd);
+}
+
 function hydrao_install() {
+    $pluginId = 'hydrao';
+    InstallComposerDependencies($pluginId);
+
+    config::save("api::{$pluginId}::mode", 'disable');
+    config::save("api::{$pluginId}::restricted", 1);
 }
 
 function hydrao_update() {
-    config::remove('autorefresh', 'hydrao');
-    try {
-        $crons = cron::searchClassAndFunction('hydrao', 'hourlyRefresh');
-        if (is_array($crons)) {
-            foreach ($crons as $cron) {
-                $cron->remove();
-            }
-        }
-    } catch (Exception $e) {
-    }
-
-    /** @var hydrao */
-    foreach (eqLogic::byType('hydrao', true) as $eqLogic) {
-        try {
-            if ($eqLogic->getConfiguration('autorefresh') == '') {
-                if ($eqLogic->getConfiguration('type') == 'showerHead')
-                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
-                if ($eqLogic->getConfiguration('type') == 'user')
-                    $eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4 * * *');
-                $eqLogic->save(true);
-            }
-        } catch (Exception $e) {
-        }
-    }
+    $pluginId = 'hydrao';
+    InstallComposerDependencies($pluginId);
 }
 
 function hydrao_remove() {
