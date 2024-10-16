@@ -18,23 +18,23 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function InstallComposerDependencies(string $pluginId) {
+function InstallComposerDependencies() {
+    $pluginId = basename(realpath(__DIR__ . '/..'));
     log::add($pluginId, 'info', 'Install composer dependencies');
     $cmd = 'cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . system::getCmdSudo() . 'composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . system::getCmdSudo() . ' chown -R www-data:www-data *';
     shell_exec($cmd);
 }
 
 function hydrao_install() {
-    $pluginId = 'hydrao';
-    InstallComposerDependencies($pluginId);
+    $pluginId = basename(realpath(__DIR__ . '/..'));
+    InstallComposerDependencies();
 
     config::save("api::{$pluginId}::mode", 'disable');
     config::save("api::{$pluginId}::restricted", 1);
 }
 
 function hydrao_update() {
-    $pluginId = 'hydrao';
-    InstallComposerDependencies($pluginId);
+    InstallComposerDependencies();
 }
 
 function hydrao_remove() {
