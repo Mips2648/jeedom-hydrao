@@ -25,16 +25,18 @@ function InstallComposerDependencies() {
     shell_exec($cmd);
 }
 
+function hydrao_post_plugin_install() {
+    InstallComposerDependencies();
+}
+
 function hydrao_install() {
     $pluginId = basename(realpath(__DIR__ . '/..'));
-    InstallComposerDependencies();
 
     config::save("api::{$pluginId}::mode", 'disable');
     config::save("api::{$pluginId}::restricted", 1);
 }
 
 function hydrao_update() {
-    InstallComposerDependencies();
 }
 
 function hydrao_remove() {
