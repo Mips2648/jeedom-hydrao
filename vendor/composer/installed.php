@@ -1,60 +1,59 @@
-<?php return array (
-  'root' => 
-  array (
+<?php return array(
+  'root' => array(
+    'name' => 'mips/jeedom-hydrao',
     'pretty_version' => 'dev-master',
     'version' => 'dev-master',
-    'aliases' => 
-    array (
-    ),
-    'reference' => 'fd34371bb73be392aedc036703f7dde2c9272e70',
-    'name' => 'mips/jeedom-hydrao',
+    'reference' => 'f442c930a63a2244b63e0d3712e1b8db7cdff56b',
+    'type' => 'library',
+    'install_path' => __DIR__ . '/../../',
+    'aliases' => array(),
+    'dev' => true,
   ),
-  'versions' => 
-  array (
-    'mips/httpclient' => 
-    array (
+  'versions' => array(
+    'mips/httpclient' => array(
       'pretty_version' => 'v0.9',
       'version' => '0.9.0.0',
-      'aliases' => 
-      array (
-      ),
       'reference' => '2259a0e6bf4522f71e57ff5896a1171cce09cff9',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../mips/httpclient',
+      'aliases' => array(),
+      'dev_requirement' => false,
     ),
-    'mips/hydrao-api' => 
-    array (
+    'mips/hydrao-api' => array(
       'pretty_version' => 'v0.18',
       'version' => '0.18.0.0',
-      'aliases' => 
-      array (
-      ),
       'reference' => '3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../mips/hydrao-api',
+      'aliases' => array(),
+      'dev_requirement' => false,
     ),
-    'mips/jeedom-hydrao' => 
-    array (
+    'mips/jeedom-hydrao' => array(
       'pretty_version' => 'dev-master',
       'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'fd34371bb73be392aedc036703f7dde2c9272e70',
+      'reference' => 'f442c930a63a2244b63e0d3712e1b8db7cdff56b',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../../',
+      'aliases' => array(),
+      'dev_requirement' => false,
     ),
-    'mips/jeedom-tools' => 
-    array (
-      'pretty_version' => 'v1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'bb8a7b65641ab20e93ba4d2a239ab2a6a7bc34af',
+    'mips/jeedom-tools' => array(
+      'pretty_version' => 'v1.1.1',
+      'version' => '1.1.1.0',
+      'reference' => '5843ad156530cc36f40ff642baabd476219ddb6e',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../mips/jeedom-tools',
+      'aliases' => array(),
+      'dev_requirement' => false,
     ),
-    'psr/log' => 
-    array (
+    'psr/log' => array(
       'pretty_version' => '1.1.4',
       'version' => '1.1.4.0',
-      'aliases' => 
-      array (
-      ),
       'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../psr/log',
+      'aliases' => array(),
+      'dev_requirement' => false,
     ),
   ),
 );

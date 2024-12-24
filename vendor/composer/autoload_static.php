@@ -4,46 +4,45 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961
-{
-    public static $prefixLengthsPsr4 = array (
-        'P' => 
-        array (
+class ComposerStaticInitcaa24ca2feccd47e8a6c1bdfc014fa03 {
+    public static $prefixLengthsPsr4 = array(
+        'P' =>
+        array(
             'Psr\\Log\\' => 8,
         ),
-        'M' => 
-        array (
+        'M' =>
+        array(
             'Mips\\HydraoClient\\' => 18,
             'Mips\\Http\\' => 10,
         ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'Psr\\Log\\' => 
-        array (
+    public static $prefixDirsPsr4 = array(
+        'Psr\\Log\\' =>
+        array(
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Mips\\HydraoClient\\' => 
-        array (
+        'Mips\\HydraoClient\\' =>
+        array(
             0 => __DIR__ . '/..' . '/mips/hydrao-api/src',
         ),
-        'Mips\\Http\\' => 
-        array (
+        'Mips\\Http\\' =>
+        array(
             0 => __DIR__ . '/..' . '/mips/httpclient/src',
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'M' => 
-        array (
-            'MipsEqLogicTrait' => 
-            array (
+    public static $prefixesPsr0 = array(
+        'M' =>
+        array(
+            'MipsEqLogicTrait' =>
+            array(
                 0 => __DIR__ . '/..' . '/mips/jeedom-tools/src',
             ),
         ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MipsEqLogicTrait' => __DIR__ . '/..' . '/mips/jeedom-tools/src/MipsEqLogicTrait.php',
         'Mips\\Http\\HttpClient' => __DIR__ . '/..' . '/mips/httpclient/src/HttpClient.php',
@@ -78,14 +77,12 @@ class ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
     );
 
-    public static function getInitializer(ClassLoader $loader)
-    {
+    public static function getInitializer(ClassLoader $loader) {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0e7c8416f461c499e1c3f7e6bba7b961::$classMap;
-
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcaa24ca2feccd47e8a6c1bdfc014fa03::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcaa24ca2feccd47e8a6c1bdfc014fa03::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcaa24ca2feccd47e8a6c1bdfc014fa03::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcaa24ca2feccd47e8a6c1bdfc014fa03::$classMap;
         }, null, ClassLoader::class);
     }
 }
