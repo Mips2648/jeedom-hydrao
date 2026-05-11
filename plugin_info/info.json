@@ -12,7 +12,7 @@
 	"utilization": "Le plugin se connecte au cloud Hydrao pour synchroniser les informations avec Jeedom, il est nécessaire de demander une clé API à Hydrao pour avoir accès.",
 	"licence": "AGPL",
 	"author": "Mips",
-	"require": "4.4",
+	"require": "4.5",
 	"os": {
 		"min": 11
 	},
