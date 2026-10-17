@@ -4,24 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17ca924d8f6e21feed5d099460a269a6",
+    "content-hash": "591ac80b8d458ebed54c09f8f3f3380d",
     "packages": [
         {
             "name": "mips/httpclient",
-            "version": "v0.9",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mips2648/httpclient.git",
-                "reference": "2259a0e6bf4522f71e57ff5896a1171cce09cff9"
+                "reference": "0e33c79e0ef7aa3364c4b24dcbcf222d37c20bdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/httpclient/zipball/2259a0e6bf4522f71e57ff5896a1171cce09cff9",
-                "reference": "2259a0e6bf4522f71e57ff5896a1171cce09cff9",
+                "url": "https://api.github.com/repos/Mips2648/httpclient/zipball/0e33c79e0ef7aa3364c4b24dcbcf222d37c20bdc",
+                "reference": "0e33c79e0ef7aa3364c4b24dcbcf222d37c20bdc",
                 "shasum": ""
             },
             "require": {
-                "psr/log": "~1.0"
+                "php": ">=8.2",
+                "psr/log": "~3.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.3",
+                "phpunit/phpunit": "^11.5"
             },
             "type": "library",
             "autoload": {
@@ -40,28 +45,22 @@
             ],
             "description": "Http Client for json API",
             "support": {
-                "issues": "https://github.com/Mips2648/httpclient/issues",
-                "source": "https://github.com/Mips2648/httpclient/tree/v0.9"
+                "source": "https://github.com/Mips2648/httpclient/tree/v2.0"
             },
-            "time": "2021-07-20T13:46:27+00:00"
+            "time": "2026-10-12T11:24:52+00:00"
         },
         {
             "name": "mips/hydrao-api",
-            "version": "v0.18",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:Mips2648/hydrao-api.git",
-                "reference": "3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85"
-            },
+            "version": "0.1",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Mips2648/hydrao-api/zipball/3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85",
-                "reference": "3ab0fd6d779d8e9dc9c76a47d33b5d8c7d6ada85",
-                "shasum": ""
+                "type": "path",
+                "url": "./resources/mips/hydrao-api",
+                "reference": "6feac4eced8083d694b6d6b3f2b21de51e172a42"
             },
             "require": {
-                "mips/httpclient": "~0.7",
-                "psr/log": "~1.0"
+                "mips/httpclient": "^2.0",
+                "php": "^8.2",
+                "psr/log": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -70,7 +69,7 @@
                 }
             },
             "license": [
-                "proprietary"
+                "MIT"
             ],
             "authors": [
                 {
@@ -78,11 +77,9 @@
                 }
             ],
             "description": "Hydrao Api Client",
-            "support": {
-                "source": "https://github.com/Mips2648/hydrao-api/tree/v0.18",
-                "issues": "https://github.com/Mips2648/hydrao-api/issues"
-            },
-            "time": "2023-08-28T06:40:35+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "mips/jeedom-tools",
@@ -125,30 +122,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.4",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "3.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "Psr\\Log\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -169,9 +166,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.4"
+                "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2021-05-03T11:20:27+00:00"
+            "time": "2024-09-11T13:17:53+00:00"
         }
     ],
     "packages-dev": [],
@@ -182,8 +179,5 @@
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "platform-overrides": {
-        "php": "7.4"
-    },
     "plugin-api-version": "2.6.0"
 }
