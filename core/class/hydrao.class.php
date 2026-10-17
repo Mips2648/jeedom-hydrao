@@ -143,7 +143,7 @@ class hydrao extends eqLogic {
 					$eqLogic->setConfiguration('fw_version', $showerHead->getFWVersion());
 					$eqLogic->setConfiguration('shower_type', $showerHead->getType());
 					$eqLogic->setConfiguration('type', 'showerHead');
-					$user->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
+					$eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
 					$eqLogic->save();
 					$newEqlogic = true;
 				}
@@ -284,7 +284,7 @@ class hydrao extends eqLogic {
 
 class hydraoCmd extends cmd {
 
-	public function execute($_options = array()) {
+	public function execute($_options = array()): bool {
 		/**
 		 * @var hydrao
 		 */
@@ -296,6 +296,8 @@ class hydraoCmd extends cmd {
 				break;
 			default:
 				log::add(__CLASS__, 'warning', __('Commande inconnue:', __FILE__) . $this->getLogicalId());
+				return false;
 		}
+		return true;
 	}
 }
