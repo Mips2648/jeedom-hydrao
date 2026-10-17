@@ -17,22 +17,12 @@ use InvalidArgumentException;
  * @author Mips
  */
 class Client {
-    /**
-     * @var AccessToken
-     */
-    private $accesstoken;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private AccessToken $accesstoken;
+    private LoggerInterface $logger;
+    private HttpClient $httpClient;
 
-    /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    public function __construct(string $apiKey, LoggerInterface $logger = null) {
+    public function __construct(string $apiKey, ?LoggerInterface $logger = null) {
         $this->logger = $logger ?: new NullLogger();
         $this->httpClient = new HttpClient('https://api.hydrao.com', $this->logger);
         $this->httpClient->getHttpHeaders()->setHeader('x-api-key', $apiKey);
@@ -43,7 +33,7 @@ class Client {
      * Access Token will be set in header and returned
      * @param string $user
      * @param string $pass
-     * @throws Exception
+     * @throws \Exception
      */
     public function newSession(string $user, string $pass) {
         if ($user == '' || $pass == '') {
@@ -84,35 +74,26 @@ class Client {
         return $this->accesstoken;
     }
 
-    private $users;
+    private Users $users;
 
     public function users() {
         $this->logger->debug("users");
         return $this->users ?: ($this->users = new Users($this->httpClient));
     }
 
-    /**
-     * @var ShowerHeads
-     */
-    private $showerheads;
+    private ShowerHeads $showerheads;
 
     public function showerHeads() {
         return $this->showerheads ?: ($this->showerheads = new ShowerHeads($this->httpClient));
     }
 
-    /**
-     * @var Advice
-     */
-    private $advice;
+    private Advice $advice;
 
     public function advice() {
         return $this->advice ?: ($this->advice = new Advice($this->httpClient));
     }
 
-    /**
-     * @var UserStats
-     */
-    private $userStats;
+    private UserStats $userStats;
 
     public function userStats() {
         return $this->userStats ?: ($this->userStats = new UserStats($this->httpClient));

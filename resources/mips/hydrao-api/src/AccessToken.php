@@ -6,36 +6,22 @@ use InvalidArgumentException;
 use RuntimeException;
 
 class AccessToken {
-    /**
-     * @var string
-     */
-    protected $accessToken;
 
-    /**
-     * @var int
-     */
-    protected $expires;
-
-    /**
-     * @var int
-     */
-    protected $expires_in;
-
-    /**
-     * @var string
-     */
-    protected $refreshToken;
+    protected string $accessToken;
+    protected int $expires;
+    protected int $expires_in;
+    protected string $refreshToken;
 
     /**
      * Constructs an access token.
      *
      * @param array $options An array of options returned by the service provider
      *     in the access token request. The `access_token` option is required.
-     * @throws InvalidArgumentException if `access_token` is not provided in `$options`.
+     * @throws \InvalidArgumentException if `access_token` is not provided in `$options`.
      */
     public function __construct(array $options = []) {
         if (empty($options['access_token'])) {
-            throw new InvalidArgumentException('Required option not passed: "access_token"');
+            throw new \InvalidArgumentException('Required option not passed: "access_token"');
         }
 
         $this->accessToken = $options['access_token'];
@@ -76,7 +62,7 @@ class AccessToken {
         $expires = $this->getExpires();
 
         if (empty($expires)) {
-            throw new RuntimeException('"expires" is not set on the token');
+            throw new \RuntimeException('"expires" is not set on the token');
         }
 
         return $expires < time();
@@ -87,6 +73,7 @@ class AccessToken {
     }
 
     public function jsonSerialize() {
+        $parameters = [];
         if ($this->accessToken) {
             $parameters['access_token'] = $this->accessToken;
         }
