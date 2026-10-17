@@ -9,7 +9,7 @@ use Mips\HydraoClient\Model\ShowerHeadStatsModel;
 
 class ShowerHead extends AbstractApi {
 
-    private $deviceUUID;
+    private string $deviceUUID;
 
     public function __construct(HttpClient $client, string $deviceUUID) {
         parent::__construct($client);

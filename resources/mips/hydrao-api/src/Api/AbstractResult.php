@@ -9,10 +9,7 @@ use Mips\Http\HttpResponse;
  */
 abstract class AbstractResult {
 
-    /**
-     * @var HttpResponse
-     */
-    private $httpResponse;
+    private HttpResponse $httpResponse;
 
     protected $data;
 
