@@ -27,12 +27,7 @@ class hydrao extends eqLogic {
 		}
 	}
 
-	/**
-	 * Get access token from cache.
-	 *
-	 * @return AccessToken
-	 */
-	private static function getAccessTokenFromCache() {
+	private static function getAccessTokenFromCache(): ?AccessToken {
 		if (cache::exist('hydrao::accessToken')) {
 			log::add(__CLASS__, 'debug', "get token from cache");
 			return new AccessToken(cache::byKey('hydrao::accessToken')->getValue());
@@ -40,12 +35,7 @@ class hydrao extends eqLogic {
 		return null;
 	}
 
-	/**
-	 * Save access token to cache.
-	 *
-	 * @param  AccessToken $accessToken
-	 */
-	private static function setAccessTokenToCache($accessToken) {
+	private static function setAccessTokenToCache(AccessToken $accessToken): void {
 		log::add(__CLASS__, 'debug', "set token to cache, token is valid until " . date('Y-m-d H:i:s', $accessToken->getExpires()));
 		cache::set('hydrao::accessToken', $accessToken->jsonSerialize());
 	}
@@ -53,7 +43,7 @@ class hydrao extends eqLogic {
 	/** @var \Mips\HydraoClient\Client */
 	private static $_client;
 
-	private static function getClient() {
+	private static function getClient(): Client {
 		if (hydrao::$_client)
 			return hydrao::$_client;
 
@@ -143,7 +133,7 @@ class hydrao extends eqLogic {
 					$eqLogic->setConfiguration('fw_version', $showerHead->getFWVersion());
 					$eqLogic->setConfiguration('shower_type', $showerHead->getType());
 					$eqLogic->setConfiguration('type', 'showerHead');
-					$user->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
+					$eqLogic->setConfiguration('autorefresh', rand(0, 59) . ' 4-22/2 * * *');
 					$eqLogic->save();
 					$newEqlogic = true;
 				}
@@ -214,7 +204,7 @@ class hydrao extends eqLogic {
 		}
 	}
 
-	private function refreshShowerStats(client $client) {
+	private function refreshShowerStats(Client $client): void {
 		try {
 			$result = $client->showerHeads()->showerHead($this->getLogicalId())->stats(100);
 			if ($result->isSuccess()) {
@@ -229,7 +219,7 @@ class hydrao extends eqLogic {
 		}
 	}
 
-	private function refreshShowers(Client $client) {
+	private function refreshShowers(Client $client): int {
 		$newShowers = 0;
 		try {
 			$lastShowerId = $this->getConfiguration('last_shower_id', 0);
@@ -260,7 +250,7 @@ class hydrao extends eqLogic {
 		return $newShowers;
 	}
 
-	public function refreshHydraoData() {
+	public function refreshHydraoData(): void {
 		$client = hydrao::getClient();
 		$type = $this->getConfiguration('type');
 		switch ($type) {
@@ -284,7 +274,7 @@ class hydrao extends eqLogic {
 
 class hydraoCmd extends cmd {
 
-	public function execute($_options = array()) {
+	public function execute($_options = array()): bool {
 		/**
 		 * @var hydrao
 		 */
@@ -296,6 +286,8 @@ class hydraoCmd extends cmd {
 				break;
 			default:
 				log::add(__CLASS__, 'warning', __('Commande inconnue:', __FILE__) . $this->getLogicalId());
+				return false;
 		}
+		return true;
 	}
 }
