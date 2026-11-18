@@ -1,0 +1,21 @@
+{
+    "name": "mips/hydrao-api",
+    "description": "Hydrao Api Client",
+    "license": "MIT",
+    "version": "0.2",
+    "authors": [
+        {
+            "name": "Mips"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "psr/log": "^1.0",
+        "mips/httpclient": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mips\\HydraoClient\\": "src/"
+        }
+    }
+}

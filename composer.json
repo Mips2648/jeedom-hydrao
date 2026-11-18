@@ -7,23 +7,20 @@
             "name": "Mips"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Mips2648/hydrao-api"
-        }
-    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "allow-plugins": {},
-        "platform": {
-            "php": "7.4"
-        }
+        "allow-plugins": {}
     },
     "require": {
-        "mips/hydrao-api": "~0.16",
+        "mips/hydrao-api": "~0.1",
         "mips/jeedom-tools": "^2.0"
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./resources/mips/hydrao-api"
+        }
+    ]
 }
