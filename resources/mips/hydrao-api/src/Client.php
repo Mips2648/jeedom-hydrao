@@ -78,24 +78,24 @@ class Client {
 
     public function users() {
         $this->logger->debug("users");
-        return $this->users ?: ($this->users = new Users($this->httpClient));
+        return $this->users ??= new Users($this->httpClient);
     }
 
     private ShowerHeads $showerheads;
 
     public function showerHeads() {
-        return $this->showerheads ?: ($this->showerheads = new ShowerHeads($this->httpClient));
+        return $this->showerheads ??= new ShowerHeads($this->httpClient);
     }
 
     private Advice $advice;
 
     public function advice() {
-        return $this->advice ?: ($this->advice = new Advice($this->httpClient));
+        return $this->advice ??= new Advice($this->httpClient);
     }
 
     private UserStats $userStats;
 
     public function userStats() {
-        return $this->userStats ?: ($this->userStats = new UserStats($this->httpClient));
+        return $this->userStats ??= new UserStats($this->httpClient);
     }
 }

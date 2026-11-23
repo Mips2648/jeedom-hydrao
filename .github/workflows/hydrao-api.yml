@@ -1,0 +1,34 @@
+name: Hydrao API tests
+
+on:
+  push:
+    branches: [beta]
+    paths:
+      - 'resources/mips/hydrao-api/**'
+      - '.github/workflows/hydrao-api.yml'
+  pull_request:
+    branches: [beta]
+    paths:
+      - 'resources/mips/hydrao-api/**'
+      - '.github/workflows/hydrao-api.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: resources/mips/hydrao-api
+    steps:
+      - uses: actions/checkout@v7
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+      - name: Run tests
+        run: composer test
